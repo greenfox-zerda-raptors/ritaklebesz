@@ -1,1 +1,2 @@
-Change in second file.
+Another change in a file
+Yet an other change
