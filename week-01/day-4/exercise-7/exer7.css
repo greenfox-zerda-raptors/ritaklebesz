@@ -1,0 +1,25 @@
+header {
+  font-size: 20px;
+  font-family: monospace;
+  margin:auto auto;
+}
+h1 {
+  margin-left: 40px;
+}
+p {
+  width: 300px;
+  font-size: 18px;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  padding: 20px;
+  margin: 0px 0px 0px 40px;
+}
+
+p:hover {
+  background: rgba(255,0,0,0.4);
+}
+
+.no-bottom {
+  border-bottom: 0px;
+}
