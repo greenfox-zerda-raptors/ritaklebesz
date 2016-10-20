@@ -1,0 +1,32 @@
+header {
+  font-size: 20px;
+  font-family: monospace;
+  margin:auto auto;
+}
+
+h1, h2 {
+  color: green;
+}
+
+#first-letter {
+  color: red;
+}
+
+#last-word {
+  color: blue;
+  font-style: italic;
+}
+
+.indent {
+  text-indent: 20px;
+}
+
+p {
+  padding: 0px;
+  margin: 0px;
+}
+
+main {
+  width: auto;
+  margin: 0px 10%;
+}
