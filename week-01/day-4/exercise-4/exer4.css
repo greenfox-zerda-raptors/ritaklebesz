@@ -8,11 +8,11 @@ h1, h2 {
   color: green;
 }
 
-#first-letter {
+.first-letter {
   color: red;
 }
 
-#last-word {
+.last-word {
   color: blue;
   font-style: italic;
 }
