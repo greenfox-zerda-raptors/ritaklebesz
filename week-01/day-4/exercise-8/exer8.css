@@ -1,0 +1,27 @@
+header {
+  font-size: 20px;
+  font-family: monospace;
+  margin:auto auto;
+}
+h1 {
+  margin-left: 40px;
+}
+p {
+  width: 300px;
+  font-size: 18px;
+  border: 2px solid black;
+  padding: 40px;
+  margin: 20px auto 20px 40px;
+}
+
+.left {
+  background: url(duck.png) left center no-repeat;
+}
+
+.center {
+  background: url(duck.png) center center no-repeat;
+}
+
+.right {
+  background: url(duck.png) right bottom no-repeat;
+}
