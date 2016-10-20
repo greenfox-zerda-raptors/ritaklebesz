@@ -1,0 +1,41 @@
+header {
+  font-size: 20px;
+  font-family: monospace;
+  margin:auto auto;
+}
+
+h1 {
+  color: blue;
+}
+
+h2 {
+  color: orange;
+}
+
+p {
+  padding: 0px;
+  margin: 0px;
+}
+
+ul {
+  color: blue;
+  list-style-type: square;
+}
+
+.sublist li {
+  color: black;
+  list-style-type: disc;
+}
+
+li.special-item {
+  color: red;
+}
+
+ol {
+  color: black;
+}
+
+main {
+  width: auto;
+  margin: 0px 10%;
+}
