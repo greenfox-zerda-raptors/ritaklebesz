@@ -2,10 +2,11 @@ body {
   color: #2C3539;
   margin: 0px auto;
   width: 100%;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Raleway","Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 24px;
 }
 
-.jumbotron {
+.header {
   display: flex;
   align-items: flex-end;
   background-image: url(anakin.png);
@@ -14,28 +15,28 @@ body {
   height: 400px;
 }
 
-.jumbotron h1, h2 {
+.header h1, h2 {
   margin: 0;
   width: 100%;
   color: black;
   padding: 0px;
-  font-weight: 900;
+  font-weight: bolder;
 }
 
-.jumbotron h1 {
+.header h1 {
   font-size: 70px;
   line-height: 70px;
   margin-bottom: 8%;
 }
 
-.jumbotron h2 {
+.header h2 {
   font-size: 35px;
   line-height: 35px;
 }
 
 .text-on-image {
   margin: 0 20%;
-  font-family: serif;
+  font-family: 'Old Standard TT', serif;
 }
 
 main {
@@ -44,7 +45,7 @@ main {
 
 .intro {
   font-size: 20px;
-  line-height: 30px;
+  line-height: 40px;
   margin: 60px auto;
 }
 
@@ -61,34 +62,31 @@ blockquote {
   margin: 1.5em -35px;
   quotes: "\201C""\201D";
   position: relative;
-}
-blockquote:before {
-  position: absolute;
-  top: -22px;
-  left: 0;
+  font-family: 'Old Standard TT', serif;
   color: white;
+}
+blockquote::before {
+  position: absolute;
+  top: -40px;
+  left: 0;
   content: open-quote;
-  font-size: 8em;
+  font-size: 128px;
 }
 blockquote p {
   padding: 20px 0;
   display: block;
-  font-family: serif;
   font-size: 42px;
   font-weight: bold;
-  color: white;
   margin: 0 10%;
 }
 
 .body-text h3 {
-  font-size: 24px;
   font-stretch: expanded;
   text-transform: uppercase;
   margin: 5% auto;
 }
 
 .body-text h4 {
-  font-size: 24px;
   line-height: 30px;
   font-weight: bold;
   margin: 0 auto 0 auto;
@@ -103,7 +101,7 @@ blockquote p {
 
 .body-text p, ul {
   font-size: 16px;
-  line-height: 22px;
+  line-height: 30px;
   margin: 5% auto;
 }
 
