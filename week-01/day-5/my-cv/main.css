@@ -1,0 +1,161 @@
+body {
+  color: #2C3539;
+  margin: 0px auto;
+  width: 1200px;
+  font-family: "Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: linear-gradient(white, #E5E4E2);
+}
+
+.banner {
+  position: relative;
+  align-items: baseline;
+  height: 430px;
+  display: block;
+}
+
+.background, .container {
+  position: absolute;
+}
+
+.container {
+  margin: 0 20%;
+  display: flex;
+  align-items: flex-end;
+  bottom: 0;
+}
+
+.background {
+  width: 1200px;
+  height: 400px;
+  background-image: url(background.jpg);
+  background-size: cover;
+  opacity: 0.5;
+  top: 0;
+}
+
+.left {
+  width: 200px;
+  height: 200px;
+}
+
+.right {
+  margin: 0 0 0 20px;
+}
+
+h1, h2 {
+  font-family: "Abril Fatface", cursive, serif;
+  margin: 0;
+  width: 100%;
+  color: #307D7E;
+  padding: 0px;
+  font-weight: 400;
+  text-shadow: 1px 1px 32px white;
+}
+
+h1 {
+  font-size: 70px;
+  line-height: 70px;
+  margin-bottom: 25px;
+}
+
+h2 {
+  font-size: 35px;
+  line-height: 35px;
+}
+
+img {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  border: 3px solid #307D7E;
+}
+
+main {
+  margin: 0 20%;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.first-column {
+  width: 160px;
+}
+
+.intro {
+  font-size: 19px;
+  line-height: 27px;
+  margin: 50px auto;
+  text-align: justify;
+}
+
+.important {
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: square;
+}
+
+blockquote {
+  background: #E5E4E2;
+  margin: 1.5em -35px;
+  quotes: "\201C""\201D";
+  position: relative;
+  font-family: "Abril Fatface", cursive, serif;
+  color: #307D7E;
+}
+
+blockquote::before {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  content: open-quote;
+  font-size: 8em;
+}
+
+blockquote p {
+  padding: 20px 0;
+  display: block;
+  line-height: normal;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0 10%;
+}
+
+footer {
+  text-align: right;
+}
+
+h3 {
+  font-size: 22px;
+  font-stretch: expanded;
+  text-transform: uppercase;
+  margin: 5% auto;
+  color: #307D7E;
+}
+
+.container2 {
+  display: flex;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 auto 0 20px;
+}
+
+h5 {
+  font-size: 17px;
+  font-weight: bold;
+  font-style: italic;
+  margin: 0 auto 0 20px;
+}
+
+p, ul {
+  margin: 5% 0;
+}
+
+hr {
+  height: 4px;
+  background: #2C3539;
+  margin: auto -35px;
+}
