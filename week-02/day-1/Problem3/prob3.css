@@ -1,0 +1,62 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+}
+
+header {
+  height: 200px;
+  background-color: aqua;
+}
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+main {
+  flex: 1 1 50%;
+  height: 800px;
+  margin: 0 3%;
+  background-color: red;
+  position: relative;
+}
+
+.black-box {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  margin: 0;
+  background-color: black;
+  overflow: auto;  
+}
+
+aside {
+  min-width: 180px;
+  height: 800px;
+  margin: 0;
+  flex: 0 1 auto;
+}
+
+.left {
+  background-color: orange;
+}
+
+.right {
+  background-color: purple;
+}
+
+footer {
+  height: 100px;
+  background-color: blue;
+  clear: both;
+}

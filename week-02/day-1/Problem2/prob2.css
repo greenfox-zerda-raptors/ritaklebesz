@@ -1,0 +1,60 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  width: 800px;
+  margin: 0 auto;
+  display: block;
+}
+
+header {
+  height: 200px;
+  background-color: aqua;
+}
+
+main {
+  width: 400px;
+  height: 800px;
+  margin: 0 20px;
+  background-color: red;
+  position: relative;
+  content: "";
+  float: left;
+}
+
+.black-box {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  margin: 0;
+  background-color: black;
+}
+
+aside {
+  width: 180px;
+  height: 800px;
+  content: "";
+  margin: 0;
+  float: left;
+}
+
+.left {
+  background-color: orange;
+}
+
+.right {
+  background-color: purple;
+}
+
+footer {
+  height: 100px;
+  background-color: blue;
+  clear: both;
+}

@@ -1,0 +1,88 @@
+body {
+  width: 600px;
+}
+
+h1{
+  font-family: Arial, serif;
+}
+
+.paragraph {
+  display: block;
+}
+
+.upper {
+  position: relative;
+}
+
+.container {
+  position: absolute;
+  top: 27px;
+  left: 178px;
+}
+
+.window {
+  width: 230px;
+  border: 2px solid black;
+  background: white;
+  border-radius: 5%;
+  position: relative;
+}
+
+.circle-icon {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
+  padding: 0 0 4px 7px;
+  margin: 0;
+  position: absolute;
+  right: 10px;
+  top: -10px;
+  z-index: 1;
+}
+
+.message {
+  margin: 0;
+  padding: 25px;
+}
+
+.important {
+  color: red;
+  padding: 15px 15px 15px 25px;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px 10px;
+  align-items: center;
+}
+
+.icons p {
+  color: black;
+  border: 0;
+  background: grey;
+  margin: 5px 5px;
+  padding: 2%;
+  border-radius: 10px;
+}
+
+img {
+  margin: 0 15px 15px 0;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+p {
+  border-bottom: 2px solid black;
+  padding: 0 0 15px 0;
+  text-align: justify;
+  margin: 15px 0 0 0;
+}
