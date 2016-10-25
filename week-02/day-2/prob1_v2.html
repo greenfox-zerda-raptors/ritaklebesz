@@ -16,7 +16,7 @@
         <label for="name">Név <span class="required-sign">*</span></label>
         <input class="new-line" type="text" id="name" name="user_name">
       </div>
-      <div class="container">
+      <div class="sub container">
         <div>
           <label for="birthdate">Születési éved</label>
           <input class="new-line" type="text" id="birthdate" name="user_birthdate" placeholder="pl. 1984">
@@ -69,7 +69,8 @@
       </div>
       <div>
         <label class="new-line" for="house">Milyen házban laksz?</label>
-        <select id="house" name="house" form="houseform" placeholder="Válassz típust!">
+        <select id="house" name="house" form="houseform">
+          <option value="disabled">Válassz típust!</option>
           <option value="Családi ház">Családi ház</option>
           <option value="Lakás">Lakás</option>
           <option value="Albérlet">Albérlet</option>
@@ -85,7 +86,7 @@
     </div>
     <div>
       <label for="upload">CV feltöltése</label>
-      <label class="new-line" for="file">File kiválasztása</label>
+      <label class="new-line button" for="file">File kiválasztása</label>
       <input type="file" id="file" style="display: none">
     </div>
     <div class="">

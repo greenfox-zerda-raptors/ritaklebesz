@@ -32,7 +32,11 @@ div {
 .container {
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 95%;
+}
+
+.sub {
+  width: 70%;
 }
 
 .container div {
@@ -131,4 +135,42 @@ textarea {
   margin: 0;
   border-radius: 5px;
   padding: 10px;
+}
+
+button[type=reset], .button {
+  border: 1px solid grey;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: RGBA(77, 62, 98, 1.00);
+  padding: 10px 20px;
+  margin: 0;
+  border-radius: 5px;
+  background: linear-gradient(white, silver);
+}
+
+.button {
+  width: 145px;
+}
+
+button[type=submit] {
+  border: 1px solid purple;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: silver;
+  padding: 9px 60px;
+  margin: 0;
+  border-radius: 5px;
+  background: linear-gradient( #4f314f, #402d40);
+}
+
+input[type=text], .button, textarea {
+  margin-top: 5px;
+}
+
+select, #house > option:first-child {
+  color: silver;
+}
+
+#house > option:nth-child(even),#house > option:nth-child(3) {
+  color: black;
 }
