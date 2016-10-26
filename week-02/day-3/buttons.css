@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.button {
+  font-family: arial, sans-serif;
+  font-size: 30px;
+  padding: 15px 20px;
+  width: 200px;
+  margin: 10px;
+  font-weight: lighter;
+  border: 2px solid silver;
+  color: white;
+  background: linear-gradient(white, #e0e0d5);
+}
+
+.first {
+  color: RGBA(77, 62, 98, 1.00);
+  box-shadow:0 0 5px silver;
+}
+
+.first:hover {
+  color: pink;
+}
+
+.second {
+  border-color: teal;
+  background: linear-gradient(#0ab1ce, #06859b);
+}
+
+.second:hover {
+  background-color: #0f3d42;
+  border-radius: 10px;
+}
+
+.third {
+  border-color: darkgreen;
+  background: linear-gradient(#4fce10, #3aa008);
+}
+
+.third:hover {
+  border: 4px solid;
+}
