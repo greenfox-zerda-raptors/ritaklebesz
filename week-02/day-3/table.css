@@ -26,15 +26,15 @@ thead th:nth-child(2) {
   border-bottom: 2px solid grey;
 }
 
-tbody tr:last-child th:nth-child(1) {
+tbody tr:last-child td:nth-child(1) {
   border-bottom-left-radius: 5px;
 }
 
-tbody tr:last-child th:nth-child(2) {
+tbody tr:last-child td:nth-child(2) {
   border-bottom-right-radius: 5px;
 }
 
-th {
+th, td {
   padding: 15px 150px 15px 20px;
 }
 
@@ -42,7 +42,7 @@ tr {
   text-align-last: left;
 }
 
-tbody th {
+td {
   border-top: 2px solid grey;
 }
 
@@ -54,10 +54,10 @@ tbody tr:nth-child(even) {
   background-color: white;
 }
 
-tr th:nth-child(1) {
+tr th:nth-child(1), tr td:nth-child(1) {
   border-right: 2px solid grey;
 }
 
-tr th:nth-child(2) {
+tr th:nth-child(2), tr td:nth-child(2) {
   padding: 15px 200px 15px 20px;
 }
