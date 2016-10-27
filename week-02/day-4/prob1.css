@@ -1,0 +1,26 @@
+body {
+  background: black;
+  margin: 70px 10%;
+}
+
+p {
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  background-color: white;
+  transform: rotateZ(45deg);
+  border-radius: 5px;
+  border: 2px solid red;
+  text-transform: uppercase;
+  line-height: 100px;
+  transform-origin: center;
+  font-family: sans-serif;
+}
+
+span {
+  position: absolute;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  left: 22px
+}
