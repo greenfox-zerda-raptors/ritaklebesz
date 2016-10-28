@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  background-color: rgba(246,246,246,1);
 }
 
 *, *::before, *::after {
@@ -63,6 +64,17 @@ header ul li {
 
 header ul:nth-child(2) li, header ul:nth-child(3) li {
   border-left: 1px solid #8eb9ff;
+  background: linear-gradient(white, #8eb9ff);
+}
+
+header ul:nth-child(2) li:first-child, header ul:nth-child(3) li:first-child {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 3;
+}
+
+header ul:nth-child(3) li:last-child {
+  background: none;
 }
 
 .logo {
@@ -95,16 +107,20 @@ nav li {
   padding: 2px;
 }
 
-.main-menu li, .other-menu li li, a, header li  {
+a {
+  padding-right: 5px;
+}
+
+.main-menu li, .other-menu li li, a, header li, .contents ol li, .contents ol li ul li  {
   color: #0645ad;
   text-decoration: none;
 }
 
-.main-menu li:hover, .other-menu li li:hover, a:hover, header li:hover {
+.main-menu li:hover, .other-menu li li:hover, a:hover, header li:hover, .contents ol li:hover, .contents ol li ul li:hover {
   text-decoration: underline;
 }
 
-.main-menu li:visited, .other-menu li li:visited, a:visited, header li:hover {
+.main-menu li:visited, .other-menu li li:visited, a:visited, header li:visited, .contents ol li:visited, .contents ol li ul li:visited {
   color: #0b0080;
 }
 
@@ -159,6 +175,15 @@ h4 {
   font-style: italic;
 }
 
+.ref {
+  vertical-align: super;
+  font-size: 10px;
+}
+
+.contents ol li ul {
+  list-style-type: none;
+}
+
 main hr {
   border: 0;
   height: 1px;
@@ -168,7 +193,7 @@ main hr {
 
 main ul {
   list-style-type: disc;
-  padding: 20px;
+  padding-left: 20px;
 }
 
 .short-bio {
@@ -197,10 +222,56 @@ h5, .bio {
   line-height: 18px;
 }
 
+.contents {
+  width: 160px;
+  padding: 5px 5px 5px 0;
+  background-color: rgba(246,246,246,1);
+  border: 1px solid silver;
+  margin-bottom: 20px;
+}
+
 main p {
   margin-top: 0;
 }
 
-main footer {
+.box {
+  float: right;
+}
+
+.figure {
+  width: 232px;
+  padding: 5px;
+  background-color: rgba(246,246,246,1);
+  border: 1px solid silver;
+  margin: 0 0 20px 20px;
+}
+
+.figure p {
+  font-size: 12px;
+  line-height: 16px;
+  margin: 0;
+}
+
+.small {
+  width: 202px;
+}
+
+blockquote footer {
   margin: 15px 20px;
+  font-size: 14px;
+  background-color: white;
+  padding-left: 25px;
+}
+
+footer {
+  font-size: 11px;
+  line-height: 16px;
+  padding-left: 180px;
+  background-color: rgba(246,246,246,1);
+  margin: 0;
+}
+
+footer p {
+  margin-top: 0;
+  padding-top: 20px;
 }
