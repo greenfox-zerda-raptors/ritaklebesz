@@ -7,11 +7,16 @@ public class Workshop21 {
         // Add "second" to the StringBuilder (sb) between the words "first" and "third"
         // Expected outpt: first second third fourth
 
-//        searchWord ="third"
-//        find it ge 0len searchWord
-        sb.insert(6, "second ");
-//        sb.insert()
+//        sb.insert(6, "second ");
 
+
+
+        String insertWord = "second";
+        String searchWord = "third";
+        int startingIndex = searchWord.length()+1;
+        if (sb.indexOf(searchWord) >= 0) {
+            sb.insert(startingIndex, insertWord + " ");
+        }
         System.out.println(sb.toString());
     }
 }

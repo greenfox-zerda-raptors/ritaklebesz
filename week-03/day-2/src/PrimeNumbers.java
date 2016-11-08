@@ -4,7 +4,7 @@
 public class PrimeNumbers {
     public static void main(String[] args) {
         // print out prime numbers between 2 and 100
-        int upperLimit = 400;
+        int upperLimit = 100000;
         System.out.println(2);
         int i = 2;
         for (int j = 3; j <= upperLimit; j++) {

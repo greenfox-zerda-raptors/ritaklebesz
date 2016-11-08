@@ -19,9 +19,6 @@ public class Workshop05 {
 
         Integer list2[] = new Integer[numList.size()];
         list2 = numList.toArray(list2);
-//        for (Integer number : list2) {
-//            System.out.println("Number = " + number);
-//        }
         System.out.println(Arrays.toString(list2));
 
     }
