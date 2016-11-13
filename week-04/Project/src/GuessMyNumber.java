@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,11 +9,17 @@ import java.util.Scanner;
 public class GuessMyNumber {
     static Scanner userInput = new Scanner(System.in);
     static Random random = new Random();
+    static int numToGuess;
+    static int upperLimit;
+    static boolean loopCond;
+    static int guessRemaining;
+    static int guess;
+    static ArrayList<Integer> guessedNumbers = new ArrayList<>();
+    static ArrayList<String> tooLow = new ArrayList<>(Arrays.asList("Nope, you're low.", "That's too low.", "Nope, try a higher value."));
+    static ArrayList<String> tooHigh = new ArrayList<>(Arrays.asList("Nope, you're high.", "Nope, try a lower value.", "That's too high."));
 
     public static void main(String[] args) {
-        int numToGuess;
-        int upperLimit;
-        boolean loopCond = true;
+        loopCond = true;
         while (loopCond) {
             System.out.println("Enter a top number in the range of 1 and 2,147,483,647, or 0 to quit?");
             try {
@@ -39,9 +46,7 @@ public class GuessMyNumber {
     }
 
     public static void guessingGame(int numToGuess, int upperLimit) {
-        int guessRemaining = 5;
-        int guess;
-        ArrayList<Integer> guessedNumbers = new ArrayList<>();
+        guessRemaining = 5;
         System.out.println("Okay, I've got a number.  You should be able to figure that out in 6 goes, let's begin.");
         while (guessRemaining >= 0) {
             try {
@@ -49,14 +54,16 @@ public class GuessMyNumber {
                 guess = Integer.parseInt(userInput.nextLine());
                 if (guessRemaining == 0) {
                     System.out.println("Sorry, you are out of guesses. The number was: " + numToGuess);
+                    guessedNumbers.clear();
                     break;
                 } else if (guess == numToGuess) {
                     System.out.println("Great job, you guessed right!");
+                    guessedNumbers.clear();
                     break;
                 } else {
                     if (guessedNumbers.contains(guess)) {
                         System.out.println("Seriously? You've already guessed that one.");
-                    } else if (guess > upperLimit) {
+                    } else if (guess > upperLimit || guess < 1) {
                         System.out.println("Seriously? That's not even within the range.");
                     } else {
                         guessedNumbers.add(guess);
@@ -72,14 +79,6 @@ public class GuessMyNumber {
     }
 
     public static void evaluateGuess(int guess, int numToGuess) {
-        ArrayList<String> tooLow = new ArrayList<>();
-        tooLow.add("Nope, you're low.");
-        tooLow.add("That's too low.");
-        tooLow.add("Nope, try a higher value.");
-        ArrayList<String> tooHigh = new ArrayList<>();
-        tooHigh.add("Nope, you're high.");
-        tooHigh.add("Nope, try a lower value.");
-        tooHigh.add("That's too high.");
         if (guess > numToGuess) {
             System.out.println(tooHigh.get(random.nextInt(tooHigh.size())));
         } else {
