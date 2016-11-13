@@ -31,16 +31,15 @@ public class Workshop03OfficialSolution {
         int i =0;
         boolean flLoop = true;
         while (flLoop) {
+            System.out.print("Type in a number: ");
             try {
-                System.out.print("Type in a number: ");
                 i = userInput.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Too high");
                 System.out.println(e.toString());
-                flLoop = false;
-                userInput.nextLine();
             }
-
+            flLoop = false;
+            userInput.nextLine();
         }
         return i;
     }
