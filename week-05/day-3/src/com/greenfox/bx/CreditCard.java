@@ -8,6 +8,10 @@ public class CreditCard implements CreditCardy {
     private String nameCardholder;
     private String codeAccount;
 
+    public CreditCard() {
+        this(0, null, null);
+    }
+
     public CreditCard(int sumCVV, String nameCardholder, String codeAccount) {
         if (sumCVV <= 0) {
             this.sumCVV = cumeSumCVV(codeAccount);
