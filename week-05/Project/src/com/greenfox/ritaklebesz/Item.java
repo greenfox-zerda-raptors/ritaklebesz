@@ -16,6 +16,13 @@ public class Item implements Comparable<Item> {
         this.task = task;
     }
 
+    public Item(String task) throws Exception {
+        this(0, false, task);
+        if (task == "") {
+            throw new Exception();
+        }
+    }
+
     @Override
     public int compareTo(Item i) {
         return this.getNumber()-i.getNumber();
@@ -31,6 +38,10 @@ public class Item implements Comparable<Item> {
     @Override
     public String toString() {
         return number + " - " + (done ? "[X] " : "[ ] ") + task;
+    }
+
+    public String towrite() {
+        return number + (done ? " 1 " : " 0 ") + task;
     }
 
     public int getNumber() {
