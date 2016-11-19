@@ -1,11 +1,11 @@
-import com.greenfox.ritaklebesz.NewToDo;
+import com.greenfox.ritaklebesz.NewerToDo;
 
 /**
  * Created by Rita on 2016-11-17.
  */
 public class App {
     public static void main(String[] args) {
-        NewToDo tasks = new NewToDo();
+        NewerToDo tasks = new NewerToDo();
         System.out.println("CLI Todo application");
         System.out.println("====================\n");
         tasks.printMenu();

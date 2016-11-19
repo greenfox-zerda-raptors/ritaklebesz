@@ -99,8 +99,12 @@ public class ListOfItems {
     }
 
     public void list() {
-        for (Item item : listOfItems) {
-            System.out.println(item.toString());
+        if (listOfItems.isEmpty()) {
+            System.out.println("No todos for today! :)");
+        } else {
+            for (Item item : listOfItems) {
+                System.out.println(item.toString());
+            }
         }
     }
 }

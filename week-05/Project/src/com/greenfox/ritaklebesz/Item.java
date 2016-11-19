@@ -18,7 +18,7 @@ public class Item implements Comparable<Item> {
 
     public Item(String task) throws Exception {
         this(0, false, task);
-        if (task == "") {
+        if (task.equals("")) {
             throw new Exception();
         }
     }
