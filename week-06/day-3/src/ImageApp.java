@@ -19,7 +19,6 @@ public class ImageApp extends JFrame {
     Toolkit tk;
     Dimension dim;
     Image image;
-    Graphics graphics;
 
     public ImageApp() throws HeadlessException {
         panel = new JPanel();
@@ -35,7 +34,6 @@ public class ImageApp extends JFrame {
         this.add(panel);
         image = tk.createImage("C:\\Users\\Rita\\Pictures\\seal4.jpg");
         this.setContentPane(new ImagePanel(image));
-        this.pack();
     }
 }
 
