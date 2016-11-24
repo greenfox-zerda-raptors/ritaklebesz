@@ -32,7 +32,7 @@ public class WrapperApp extends JFrame implements ActionListener {
         int yPos = (dim.height/2)-(this.getHeight()/2);
         this.setLocation(xPos, yPos);
         this.setVisible(true);
-        this.setDefaultCloseOperation(3);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         menuBar = new JMenuBar();
         menu = new JMenu("File");
         menuBar.add(menu);
@@ -40,6 +40,8 @@ public class WrapperApp extends JFrame implements ActionListener {
         menu.add(menuItem);
         this.setJMenuBar(menuBar);
         menuItem.addActionListener(this);
+        JPanel imagePanel = new ImagePanel();
+        this.add(imagePanel);
     }
 
     @Override
