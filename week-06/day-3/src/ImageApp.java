@@ -1,11 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 
 /**
  * Created by Rita on 2016-11-23.
  */
-public class ImageApp extends JFrame {
+public class ImageApp extends JFrame implements ComponentListener {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -33,7 +35,31 @@ public class ImageApp extends JFrame {
         this.setDefaultCloseOperation(3);
         this.add(panel);
         image = tk.createImage("C:\\Users\\Rita\\Pictures\\seal4.jpg");
+        image = Toolkit.getDefaultToolkit().createImage("C:\\Users\\Rita\\Pictures\\seal4.jpg");
         this.setContentPane(new ImagePanel(image));
+        pack();
+    }
+
+    @Override
+    public void componentResized(ComponentEvent arg0) {
+        Rectangle b = arg0.getComponent().getBounds();
+        arg0.getComponent().setBounds(b.x, b.y, b.width, b.width);
+
+    }
+
+    @Override
+    public void componentMoved(ComponentEvent e) {
+
+    }
+
+    @Override
+    public void componentShown(ComponentEvent e) {
+
+    }
+
+    @Override
+    public void componentHidden(ComponentEvent e) {
+
     }
 }
 
@@ -49,3 +75,5 @@ class ImagePanel extends JComponent {
         g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
     }
 }
+
+

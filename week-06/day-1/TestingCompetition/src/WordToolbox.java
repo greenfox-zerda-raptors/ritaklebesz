@@ -47,6 +47,6 @@ public class WordToolbox implements IWordToolbox {
 
     @Override
     public void WaitingItOut() {
-        
+
     }
 }

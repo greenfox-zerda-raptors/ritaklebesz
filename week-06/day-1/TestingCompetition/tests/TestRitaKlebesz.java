@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 /**
  * Created by Rita on 2016-11-21.
  */
-public class TestRitaK {
+public class TestRitaKlebesz {
     WordToolbox wSource = new WordToolbox ("Tarzan's toenails");
     WordToolbox empty = new WordToolbox("");
     WordToolbox word = new WordToolbox("Me Tarzan, You Jane");
