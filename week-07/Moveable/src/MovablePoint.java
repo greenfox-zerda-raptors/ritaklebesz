@@ -39,5 +39,5 @@ public class MovablePoint implements Movable {
         x -= xSpeed;
     }
 
-    
+
 }
