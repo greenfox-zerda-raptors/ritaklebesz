@@ -4,12 +4,16 @@
 public class Hero extends Character {
 
     public Hero() {
-        super("hero-down.png", 0, 0, 20, 20, 0, 5, 1);
+        this("hero-down.png", 0, 0, 20, 20, 0, 5, 1, false);
         int dice = rollDice();
         HP += 3 * dice;
         DP += 2 * dice;
         SP += dice;
         maxHP = 38;
+    }
+
+    public Hero(String filename, int posX, int posY, int HP, int maxHP, int DP, int SP, int level, boolean hasKey) {
+        super(filename, posX, posY, HP, maxHP, DP, SP, level, hasKey);
     }
 
     public void leveling() {
@@ -40,6 +44,7 @@ public class Hero extends Character {
     }
 
     public void enterNewArea() {
+        useKey();
         int dice = rollDice();
         if (dice == 6) {
             HP = maxHP;

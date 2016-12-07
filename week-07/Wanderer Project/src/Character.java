@@ -4,16 +4,17 @@ import java.util.Random;
  * Created by Rita on 2016-12-06.
  */
 public abstract class Character extends GameObject {
-    protected int HP, DP, SP, level;
-    int maxHP;
+    protected int HP, maxHP, DP, SP, level;
+    protected boolean hasKey;
 
-    public Character(String filename, int posX, int posY, int HP, int maxHP, int DP, int SP, int level) {
+    public Character(String filename, int posX, int posY, int HP, int maxHP, int DP, int SP, int level, boolean hasKey) {
         super(filename, posX, posY);
         this.HP = HP;
         this.maxHP = maxHP;
         this.DP = DP;
         this.SP = SP;
         this.level = level;
+        this.hasKey = hasKey;
     }
 
     public abstract void moveUp();
@@ -46,6 +47,16 @@ public abstract class Character extends GameObject {
         return HP > 0;
     }
 
+    public void takeKey(Character defeatedCharacter) {
+        if (defeatedCharacter.isHasKey()) {
+            hasKey = defeatedCharacter.isHasKey();
+        }
+    }
+
+    public void useKey() {
+        hasKey = false;
+    }
+
     @Override
     public String toString() {
         return String.format("%s (Level %d) HP: %d/%d | DP: %d | SP: %d", getClass().getName(), level, HP, maxHP, DP, SP);
@@ -53,5 +64,9 @@ public abstract class Character extends GameObject {
 
     public int getLevel() {
         return level;
+    }
+
+    public boolean isHasKey() {
+        return hasKey;
     }
 }

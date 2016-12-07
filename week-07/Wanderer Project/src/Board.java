@@ -2,18 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
-
-import static java.awt.event.KeyEvent.VK_RIGHT;
 
 /**
  * Created by Rita on 2016-12-06.
  */
 public class Board extends JComponent implements KeyListener {
-    Area area;
+    GameObjectContainer gameObjectContainer;
     Hero hero;
-    Area badGuys;
-    boolean gotKey;
+    GameObjectContainer badGuys;
     int[][] map;
     Maze m;
 
@@ -33,27 +29,23 @@ public class Board extends JComponent implements KeyListener {
                 {0, 1, 0, 1, 0, 1, 0, 0, 0, 0}
         };
 
-        area = new Area();
-        area.add(map);
+        gameObjectContainer = new GameObjectContainer();
+        gameObjectContainer.add(map);
         hero = new Hero();
-        badGuys = new Area();
+        badGuys = new GameObjectContainer();
         badGuys.add(new Monster(5,5,1,true));
         badGuys.add(new Monster(10,2,1,false));
         badGuys.add(new Monster(8,7,1,false));
         badGuys.add(new Boss(10, 4, 1));
 
-        // set the size of your draw board
         setPreferredSize(new Dimension(1100, 800));
         setVisible(true);
-        gotKey = false;
         m = new Maze(11, 10);
     }
 
     @Override
     public void paint(Graphics graphics) {
-        // here you have a 720x720 canvas
-        // you can create and draw an image using the class below e.g.
-        area.draw(graphics);
+        gameObjectContainer.draw(graphics);
         badGuys.draw(graphics);
         if (hero != null) {
             hero.draw(graphics);
@@ -74,7 +66,7 @@ public class Board extends JComponent implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             int[] oldCoordinates = hero.getCoordinates();
             int[] newCoordinates = new int[]{oldCoordinates[0]+1, oldCoordinates[1]};
-            if (area.isValidStep(newCoordinates)) {
+            if (gameObjectContainer.isValidStep(newCoordinates)) {
                 hero.moveRight();
             }
             hero.updateImage("hero-right.png");
@@ -83,7 +75,7 @@ public class Board extends JComponent implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             int[] oldCoordinates = hero.getCoordinates();
             int[] newCoordinates = new int[]{oldCoordinates[0]-1, oldCoordinates[1]};
-            if (area.isValidStep(newCoordinates)) {
+            if (gameObjectContainer.isValidStep(newCoordinates)) {
                 hero.moveLeft();
             }
             hero.updateImage("hero-left.png");
@@ -92,7 +84,7 @@ public class Board extends JComponent implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
             int[] oldCoordinates = hero.getCoordinates();
             int[] newCoordinates = new int[]{oldCoordinates[0], oldCoordinates[1]-1};
-            if (area.isValidStep(newCoordinates)) {
+            if (gameObjectContainer.isValidStep(newCoordinates)) {
                 hero.moveUp();
             }
             hero.updateImage("hero-up.png");
@@ -101,7 +93,7 @@ public class Board extends JComponent implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             int[] oldCoordinates = hero.getCoordinates();
             int[] newCoordinates = new int[]{oldCoordinates[0], oldCoordinates[1]+1};
-            if (area.isValidStep(newCoordinates)) {
+            if (gameObjectContainer.isValidStep(newCoordinates)) {
                 hero.moveDown();
             }
             hero.updateImage("hero-down.png");
@@ -112,40 +104,53 @@ public class Board extends JComponent implements KeyListener {
             if (badGuys.get(heroCoordinates) != null) {
                 Character opponent = (Character) badGuys.get(heroCoordinates);
                 hero.battle(opponent);
-                if (!opponent.isAlive()) {
-                    if (badGuys.get(heroCoordinates).getClass() == Monster.class) {
-                        Monster monster = (Monster) badGuys.get(heroCoordinates);
-                        if (monster.isHasKey()) {
-                            gotKey = true;
-                        }
-                    }
-                    badGuys.remove(opponent);
-                    hero.leveling();
-                }
-                if (!hero.isAlive()) {
-                    hero = null;
-                }
-                if (!badGuys.isBossAlive() && hero.isAlive() && gotKey) {
-                    gotKey = false;
-                    hero.enterNewArea();
-                    area.clear();
-                    map = m.generate();
-                    area.add(map);
-                    badGuys.clear();
-                    badGuys.add(new Monster(5,5,hero.getLevel(),true));
-                    badGuys.add(new Monster(10,2,hero.getLevel(),false));
-                    badGuys.add(new Monster(8,7,hero.getLevel(),false));
-                    badGuys.add(new Boss(10, 4, hero.getLevel()));
+                if (checkHeroState()) {
+                    postBattleCleanUp(opponent);
+                    levelUp();
                 }
             }
             repaint();
         }
-
     }
 
-//    private boolean isValidMove(int[] newCoordinates) {
-//        return
-//    }
+    private void postBattleCleanUp(Character opponent) {
+        if (!opponent.isAlive()) {
+            hero.takeKey(opponent);
+            badGuys.remove(opponent);
+            hero.leveling();
+        }
+    }
+
+    private boolean checkHeroState() {
+        if (!hero.isAlive()) {
+            hero = null;
+            return false;
+        }
+        return true;
+    }
+
+    private void levelUp() {
+        if (!badGuys.isBossAlive() && hero.isAlive() && hero.isHasKey()) {
+            hero.enterNewArea();
+            generateNewArea();
+            generateNewOpponents();
+        }
+    }
+
+    private void generateNewArea() {
+        gameObjectContainer.clear();
+        map = m.generate();
+        gameObjectContainer.add(map);
+    }
+
+    private void generateNewOpponents() {
+        badGuys.clear();
+        for (int i = 0; i < (hero.getLevel()/3 > 2 ? hero.getLevel()/3 : 2); i++) {
+            badGuys.add(new Monster(gameObjectContainer.getRandomValidCoordinates(),hero.getLevel(),false));
+        }
+        badGuys.add(new Boss(gameObjectContainer.getRandomValidCoordinates(), hero.getLevel()));
+        badGuys.add(new Monster(gameObjectContainer.getRandomValidCoordinates(),hero.getLevel(),true));
+    }
 
     @Override
     public void keyReleased(KeyEvent e) {
