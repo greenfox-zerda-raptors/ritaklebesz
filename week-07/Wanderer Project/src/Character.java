@@ -4,7 +4,7 @@ import java.util.Random;
  * Created by Rita on 2016-12-06.
  */
 public abstract class Character extends GameObject {
-    private int HP, DP, SP, level;
+    protected int HP, DP, SP, level;
 
     public Character(String filename, int posX, int posY, int HP, int DP, int SP, int level) {
         super(filename, posX, posY);
@@ -20,9 +20,10 @@ public abstract class Character extends GameObject {
     public abstract void moveRight();
 
     public void leveling() {
-        HP += rollDice();
-        DP += rollDice();
-        SP += rollDice();
+        int dice = rollDice();
+        HP += dice;
+        DP += dice;
+        SP += dice;
     }
 
     public void battle(Character attackedCharacter) {
@@ -41,7 +42,7 @@ public abstract class Character extends GameObject {
         }
     }
 
-    private int rollDice() {
+    public int rollDice() {
         Random random = new Random();
         return random.nextInt(6)+1;
     }

@@ -11,8 +11,8 @@ public class GameObject {
     BufferedImage image;
     int posX, posY;
 
-    public GameObject() {
-        this("hero.png", 0, 0);
+    public GameObject(String filename) {
+        this(filename, 0, 0);
     }
 
     public GameObject(String filename, int posX, int posY) {
