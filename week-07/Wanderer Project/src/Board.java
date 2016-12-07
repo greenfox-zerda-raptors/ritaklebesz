@@ -14,23 +14,24 @@ public class Board extends JComponent implements KeyListener {
     Hero hero;
     Area badGuys;
     boolean gotKey;
-
-    int[][] map = new int[][]{
-            {0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
-            {0, 0, 0, 1, 0, 1, 0, 1, 1, 0},
-            {0, 1, 1, 1, 0, 1, 0, 1, 1, 0},
-            {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-            {1, 1, 1, 1, 0, 1, 1, 1, 1, 0},
-            {0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
-            {0, 1, 0, 1, 0, 1, 1, 0, 1, 0},
-            {0, 0, 0, 0, 0, 1, 1, 0, 1, 0},
-            {0, 1, 1, 1, 0, 0, 0, 0, 1, 0},
-            {0, 0, 0, 1, 0, 1, 1, 0, 1, 0},
-            {0, 1, 0, 1, 0, 1, 0, 0, 0, 0}
-    };
-
+    int[][] map;
+    Maze m;
 
     public Board() {
+
+        int[][] map = new int[][]{
+                {0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
+                {0, 0, 0, 1, 0, 1, 0, 1, 1, 0},
+                {0, 1, 1, 1, 0, 1, 0, 1, 1, 0},
+                {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+                {1, 1, 1, 1, 0, 1, 1, 1, 1, 0},
+                {0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 1, 0, 1, 0},
+                {0, 0, 0, 0, 0, 1, 1, 0, 1, 0},
+                {0, 1, 1, 1, 0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 1, 0, 1, 1, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 0, 0, 0, 0}
+        };
 
         area = new Area();
         area.add(map);
@@ -45,6 +46,7 @@ public class Board extends JComponent implements KeyListener {
         setPreferredSize(new Dimension(1100, 800));
         setVisible(true);
         gotKey = false;
+        m = new Maze(11, 10);
     }
 
     @Override
@@ -127,6 +129,7 @@ public class Board extends JComponent implements KeyListener {
                     gotKey = false;
                     hero.enterNewArea();
                     area.clear();
+                    map = m.generate();
                     area.add(map);
                     badGuys.clear();
                     badGuys.add(new Monster(5,5,hero.getLevel(),true));
