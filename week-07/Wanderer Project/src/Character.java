@@ -48,7 +48,7 @@ public abstract class Character extends GameObject {
 
     @Override
     public String toString() {
-        return String.format("%s (Level %d) HP: %d/%d | DP: %d | SP: %d", getClass(), level, HP, maxHP, DP, SP);
+        return String.format("%s (Level %d) HP: %d/%d | DP: %d | SP: %d", getClass().getName(), level, HP, maxHP, DP, SP);
     }
 
     public int getLevel() {
