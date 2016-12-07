@@ -9,7 +9,7 @@ import java.io.IOException;
  */
 public class GameObject {
     BufferedImage image;
-    int posX, posY;
+    protected int posX, posY;
 
     public GameObject(String filename) {
         this(filename, 0, 0);

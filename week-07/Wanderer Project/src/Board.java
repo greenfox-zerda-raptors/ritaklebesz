@@ -6,9 +6,13 @@ import java.util.ArrayList;
  * Created by Rita on 2016-12-06.
  */
 public class Board extends JComponent {
-    ArrayList<GameObject> gameObjects;
     Area area;
     Hero hero;
+    Monster monsterWithKey;
+    Monster monster1;
+    Monster monster2;
+    Boss boss;
+
 
     public Board() {
 
@@ -29,6 +33,10 @@ public class Board extends JComponent {
         area = new Area();
         area.add(map);
         hero = new Hero();
+        monsterWithKey = new Monster(5,5,1,true);
+        monster1 = new Monster(10,2,1,true);
+        monster2 = new Monster(8,7,1,true);
+        boss = new Boss(10, 4, 1);
 
 
         // set the size of your draw board
@@ -41,6 +49,10 @@ public class Board extends JComponent {
         // here you have a 720x720 canvas
         // you can create and draw an image using the class below e.g.
         area.draw(graphics);
+        monsterWithKey.draw(graphics);
+        monster1.draw(graphics);
+        monster2.draw(graphics);
+        boss.draw(graphics);
         hero.draw(graphics);
     }
 }

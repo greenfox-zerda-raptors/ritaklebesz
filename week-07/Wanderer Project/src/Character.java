@@ -19,13 +19,6 @@ public abstract class Character extends GameObject {
     public abstract void moveLeft();
     public abstract void moveRight();
 
-    public void leveling() {
-        int dice = rollDice();
-        HP += dice;
-        DP += dice;
-        SP += dice;
-    }
-
     public void battle(Character attackedCharacter) {
         attackedCharacter.attacked(strike());
         attacked(attackedCharacter.strike());
