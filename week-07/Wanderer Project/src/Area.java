@@ -31,6 +31,24 @@ public class Area {
         return null;
     }
 
+    public void clear() {
+        area.removeAll(area);
+    }
+
+    public boolean isBossAlive() {
+        boolean result = false;
+        for (GameObject go : area) {
+            if (go.getClass() == Boss.class) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    public GameObject get(int i) {
+        return area.get(i);
+    }
+
     public void draw(Graphics graphics) {
         for (GameObject gameObject : area){
             gameObject.draw(graphics);
@@ -39,6 +57,14 @@ public class Area {
 
     public void add(GameObject gameObject) {
         area.add(gameObject);
+    }
+
+    public void remove(GameObject gameObject) {
+        area.remove(gameObject);
+    }
+
+    public int size() {
+        return area.size();
     }
 
     public void add(int[][] map) {

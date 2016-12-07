@@ -12,38 +12,39 @@ import static java.awt.event.KeyEvent.VK_RIGHT;
 public class Board extends JComponent implements KeyListener {
     Area area;
     Hero hero;
-    Monster monsterWithKey;
-    Monster monster1;
-    Monster monster2;
-    Boss boss;
+    Area badGuys;
+    boolean gotKey;
+
+    int[][] map = new int[][]{
+            {0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
+            {0, 0, 0, 1, 0, 1, 0, 1, 1, 0},
+            {0, 1, 1, 1, 0, 1, 0, 1, 1, 0},
+            {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
+            {1, 1, 1, 1, 0, 1, 1, 1, 1, 0},
+            {0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
+            {0, 1, 0, 1, 0, 1, 1, 0, 1, 0},
+            {0, 0, 0, 0, 0, 1, 1, 0, 1, 0},
+            {0, 1, 1, 1, 0, 0, 0, 0, 1, 0},
+            {0, 0, 0, 1, 0, 1, 1, 0, 1, 0},
+            {0, 1, 0, 1, 0, 1, 0, 0, 0, 0}
+    };
 
 
     public Board() {
 
-        int[][] map = new int[][]{
-                {0, 0, 0, 1, 0, 1, 0, 0, 0, 0},
-                {0, 0, 0, 1, 0, 1, 0, 1, 1, 0},
-                {0, 1, 1, 1, 0, 1, 0, 1, 1, 0},
-                {0, 0, 0, 0, 0, 1, 0, 0, 0, 0},
-                {1, 1, 1, 1, 0, 1, 1, 1, 1, 0},
-                {0, 1, 0, 1, 0, 0, 0, 0, 1, 0},
-                {0, 1, 0, 1, 0, 1, 1, 0, 1, 0},
-                {0, 0, 0, 0, 0, 1, 1, 0, 1, 0},
-                {0, 1, 1, 1, 0, 0, 0, 0, 1, 0},
-                {0, 0, 0, 1, 0, 1, 1, 0, 1, 0},
-                {0, 1, 0, 1, 0, 1, 0, 0, 0, 0}
-        };
-
         area = new Area();
         area.add(map);
         hero = new Hero();
-        monsterWithKey = new Monster(5,5,1,true);
-        monster1 = new Monster(10,2,1,true);
-        monster2 = new Monster(8,7,1,true);
-        boss = new Boss(10, 4, 1);
+        badGuys = new Area();
+        badGuys.add(new Monster(5,5,1,true));
+        badGuys.add(new Monster(10,2,1,false));
+        badGuys.add(new Monster(8,7,1,false));
+        badGuys.add(new Boss(10, 4, 1));
+
         // set the size of your draw board
-        setPreferredSize(new Dimension(800, 800));
+        setPreferredSize(new Dimension(1100, 800));
         setVisible(true);
+        gotKey = false;
     }
 
     @Override
@@ -51,11 +52,14 @@ public class Board extends JComponent implements KeyListener {
         // here you have a 720x720 canvas
         // you can create and draw an image using the class below e.g.
         area.draw(graphics);
-        monsterWithKey.draw(graphics);
-        monster1.draw(graphics);
-        monster2.draw(graphics);
-        boss.draw(graphics);
-        hero.draw(graphics);
+        badGuys.draw(graphics);
+        if (hero != null) {
+            hero.draw(graphics);
+            graphics.drawString(hero.toString(), 800, 30);
+        }
+        for (int i = 0; i < badGuys.size(); i++) {
+            graphics.drawString(badGuys.get(i).toString(), 800, 60 + 30 * i);
+        }
     }
 
     @Override
@@ -103,9 +107,37 @@ public class Board extends JComponent implements KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             int[] heroCoordinates = hero.getCoordinates();
-
+            if (badGuys.get(heroCoordinates) != null) {
+                Character opponent = (Character) badGuys.get(heroCoordinates);
+                hero.battle(opponent);
+                if (!opponent.isAlive()) {
+                    if (badGuys.get(heroCoordinates).getClass() == Monster.class) {
+                        Monster monster = (Monster) badGuys.get(heroCoordinates);
+                        if (monster.isHasKey()) {
+                            gotKey = true;
+                        }
+                    }
+                    badGuys.remove(opponent);
+                    hero.leveling();
+                }
+                if (!hero.isAlive()) {
+                    hero = null;
+                }
+                if (!badGuys.isBossAlive() && hero.isAlive() && gotKey) {
+                    gotKey = false;
+                    hero.enterNewArea();
+                    area.clear();
+                    area.add(map);
+                    badGuys.clear();
+                    badGuys.add(new Monster(5,5,hero.getLevel(),true));
+                    badGuys.add(new Monster(10,2,hero.getLevel(),false));
+                    badGuys.add(new Monster(8,7,hero.getLevel(),false));
+                    badGuys.add(new Boss(10, 4, hero.getLevel()));
+                }
+            }
             repaint();
         }
+
     }
 
 //    private boolean isValidMove(int[] newCoordinates) {

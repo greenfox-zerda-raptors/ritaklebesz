@@ -5,10 +5,12 @@ import java.util.Random;
  */
 public abstract class Character extends GameObject {
     protected int HP, DP, SP, level;
+    int maxHP;
 
-    public Character(String filename, int posX, int posY, int HP, int DP, int SP, int level) {
+    public Character(String filename, int posX, int posY, int HP, int maxHP, int DP, int SP, int level) {
         super(filename, posX, posY);
         this.HP = HP;
+        this.maxHP = maxHP;
         this.DP = DP;
         this.SP = SP;
         this.level = level;
@@ -46,6 +48,10 @@ public abstract class Character extends GameObject {
 
     @Override
     public String toString() {
-        return String.format("%s (Level %d) HP: %d/10 | DP: %d | SP: %d", getClass(), level, HP, DP, SP);
+        return String.format("%s (Level %d) HP: %d/%d | DP: %d | SP: %d", getClass(), level, HP, maxHP, DP, SP);
+    }
+
+    public int getLevel() {
+        return level;
     }
 }
