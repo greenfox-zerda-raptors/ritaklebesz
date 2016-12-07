@@ -1,6 +1,7 @@
 // Maze generator in Java
 // Joe Wingbermuehle
 // 2015-07-27
+// https://github.com/joewing/maze
 // modified for Wanderer Project
 
 class Maze {
@@ -65,19 +66,4 @@ class Maze {
         data[width - 3][height - 2] = SPACE;
         return data;
     }
-
-    public void print() {
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                if (data[x][y] == WALL) {
-                    System.out.print("1");
-                } else {
-                    System.out.print("0");
-                }
-            }
-            System.out.println();
-        }
-    }
-
-
 }
