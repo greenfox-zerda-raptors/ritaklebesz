@@ -37,7 +37,7 @@ public class Hero extends Character {
 
     @Override
     public void moveRight() {
-        posX -= 1;
+        posX += 1;
     }
 
     public void enterNewArea() {

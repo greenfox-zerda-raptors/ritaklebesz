@@ -1,39 +1,44 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Rita on 2016-12-07.
  */
 public class Area {
-    ArrayList<Tile> area;
+    ArrayList<GameObject> area;
 
     public Area() {
         area = new ArrayList<>();
     }
 
     public boolean isValidStep(int[] coordinates) {
-        return get(coordinates).isCanSteppedOn();
+        if (get(coordinates) != null) {
+            return ((Tile) get(coordinates)).isCanSteppedOn();
+        } else {
+            return false;
+        }
     }
 
-    public Tile get(int[] coordinates) {
-        Tile searchedTile;
-        for (Tile tile : area) {
-            if (coordinates.equals(tile.getCoordinates())){
-                searchedTile = tile;
-                return searchedTile;
+    public GameObject get(int[] coordinates) {
+        GameObject searchedGameObject;
+        for (GameObject gameObject : area) {
+            if (Arrays.equals(coordinates, gameObject.getCoordinates())) {
+                searchedGameObject = gameObject;
+                return searchedGameObject;
             }
         }
         return null;
     }
 
     public void draw(Graphics graphics) {
-        for (Tile tile : area){
-            tile.draw(graphics);
+        for (GameObject gameObject : area){
+            gameObject.draw(graphics);
         }
     }
 
-    public void add(Tile tile) {
-        area.add(tile);
+    public void add(GameObject gameObject) {
+        area.add(gameObject);
     }
 
     public void add(int[][] map) {

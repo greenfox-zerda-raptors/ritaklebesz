@@ -11,10 +11,6 @@ public class GameObject {
     BufferedImage image;
     protected int posX, posY;
 
-    public GameObject(String filename) {
-        this(filename, 0, 0);
-    }
-
     public GameObject(String filename, int posX, int posY) {
         this.posX = posX;
         this.posY = posY;
