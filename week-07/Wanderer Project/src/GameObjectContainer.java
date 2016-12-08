@@ -41,6 +41,20 @@ public class GameObjectContainer {
         return tile.getCoordinates();
     }
 
+    public int[] getAdjacentRandomValidCoordinates(int[] coordinates) {
+        Random random = new Random();
+        int[][] coordinateDifference = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        ArrayList<Tile> tempContainer = new ArrayList<>();
+        for (int i = 0; i < coordinateDifference.length; i++) {
+            int[] newCoordinates = {coordinates[0] + coordinateDifference[i][0], coordinates[1] + coordinateDifference[i][1]};
+            if (isValidStep(newCoordinates)) {
+                tempContainer.add((Tile) this.get(newCoordinates));
+            }
+        }
+        Tile tile = (Tile) tempContainer.get(random.nextInt(tempContainer.size()));
+        return tile.getCoordinates();
+    }
+
     public void draw(Graphics graphics) {
         for (GameObject gameObject : container) {
             gameObject.draw(graphics);

@@ -64,16 +64,20 @@ public class Board extends JComponent implements KeyListener {
     public void keyPressed(KeyEvent e) {
         if (hero != null) {
             if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                move("right", 1, 0, hero);
+                moveHero("right", 1, 0);
+                moveBadGuys();
             }
             if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                move("left", -1, 0, hero);
+                moveHero("left", -1, 0);
+                moveBadGuys();
             }
             if (e.getKeyCode() == KeyEvent.VK_UP) {
-                move("up", 0, -1, hero);
+                moveHero("up", 0, -1);
+                moveBadGuys();
             }
             if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                move("down", 0, 1, hero);
+                moveHero("down", 0, 1);
+                moveBadGuys();
             }
             if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                 handleBattle();
@@ -86,14 +90,19 @@ public class Board extends JComponent implements KeyListener {
     public void keyReleased(KeyEvent e) {
     }
 
-    private void move(String direction, int x, int y, Character gameCharacter) {
+    private void moveHero(String direction, int x, int y) {
         int[] oldCoordinates = hero.getCoordinates();
         int[] newCoordinates = new int[]{oldCoordinates[0] + x, oldCoordinates[1] + y};
         if (area.isValidStep(newCoordinates)) {
-            gameCharacter.move(x, y);
+            hero.move(x, y);
         }
-        if (gameCharacter.equals(hero)) {
-            hero.updateImage(String.format("hero-%s.png", direction));
+        hero.updateImage(String.format("hero-%s.png", direction));
+    }
+
+    private void moveBadGuys() {
+        for (int i = 0; i < badGuys.size(); i++) {
+            int[] coordinates = badGuys.get(i).getCoordinates();
+            ((Character) badGuys.get(i)).move(area.getAdjacentRandomValidCoordinates(coordinates));
         }
     }
 

@@ -22,6 +22,11 @@ public class Character extends GameObject {
         posY += y;
     }
 
+    public void move(int[] coordinates) {
+        posX = coordinates[0];
+        posY = coordinates[1];
+    }
+
     public void battle(Character attackedCharacter) {
         attackedCharacter.attacked(strike());
         attacked(attackedCharacter.strike());
