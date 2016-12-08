@@ -12,6 +12,7 @@ public class Board extends JComponent implements KeyListener {
     GameObjectContainer badGuys;
     int[][] map;
     Maze m;
+    int heroMovementCounter;
 
     public Board() {
 
@@ -41,6 +42,7 @@ public class Board extends JComponent implements KeyListener {
         setPreferredSize(new Dimension(1100, 800));
         setVisible(true);
         m = new Maze(20, 18);
+        heroMovementCounter = 0;
     }
 
     @Override
@@ -95,14 +97,19 @@ public class Board extends JComponent implements KeyListener {
         int[] newCoordinates = new int[]{oldCoordinates[0] + x, oldCoordinates[1] + y};
         if (area.isValidStep(newCoordinates)) {
             hero.move(x, y);
+            heroMovementCounter++;
+        } else if (heroMovementCounter % 2 == 0) {
+            heroMovementCounter--;
         }
         hero.updateImage(String.format("hero-%s.png", direction));
     }
 
     private void moveBadGuys() {
-        for (int i = 0; i < badGuys.size(); i++) {
-            int[] coordinates = badGuys.get(i).getCoordinates();
-            ((Character) badGuys.get(i)).move(area.getAdjacentRandomValidCoordinates(coordinates));
+        if (heroMovementCounter % 2 == 0) {
+            for (int i = 0; i < badGuys.size(); i++) {
+                int[] coordinates = badGuys.get(i).getCoordinates();
+                ((Character) badGuys.get(i)).move(area.getAdjacentRandomValidCoordinates(coordinates));
+            }
         }
     }
 

@@ -51,7 +51,7 @@ public class GameObjectContainer {
                 tempContainer.add((Tile) this.get(newCoordinates));
             }
         }
-        Tile tile = (Tile) tempContainer.get(random.nextInt(tempContainer.size()));
+        Tile tile = tempContainer.get(random.nextInt(tempContainer.size()));
         return tile.getCoordinates();
     }
 
