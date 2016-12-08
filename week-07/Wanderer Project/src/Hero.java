@@ -23,35 +23,15 @@ public class Hero extends Character {
         SP += dice;
     }
 
-    @Override
-    public void moveUp() {
-        posY -= 1;
-    }
-
-    @Override
-    public void moveDown() {
-        posY += 1;
-    }
-
-    @Override
-    public void moveLeft() {
-        posX -= 1;
-    }
-
-    @Override
-    public void moveRight() {
-        posX += 1;
-    }
-
     public void enterNewArea() {
         useKey();
         int dice = rollDice();
         if (dice == 6) {
             HP = maxHP;
         } else if (dice == 5 || dice == 4) {
-            HP = (maxHP/3 > HP ? maxHP/3 : HP);
+            HP = (maxHP / 3 > HP ? maxHP / 3 : HP);
         } else {
-            HP = (maxHP/10 > HP ? maxHP/10 : HP);
+            HP = (maxHP / 10 > HP ? maxHP / 10 : HP);
         }
         posY = 0;
         posX = 0;

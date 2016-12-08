@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
  * Created by Rita on 2016-12-06.
  */
 public class Board extends JComponent implements KeyListener {
-    GameObjectContainer gameObjectContainer;
+    GameObjectContainer area;
     Hero hero;
     GameObjectContainer badGuys;
     int[][] map;
@@ -29,23 +29,23 @@ public class Board extends JComponent implements KeyListener {
                 {0, 1, 0, 1, 0, 1, 0, 0, 0, 0}
         };
 
-        gameObjectContainer = new GameObjectContainer();
-        gameObjectContainer.add(map);
+        area = new GameObjectContainer();
+        area.add(map);
         hero = new Hero();
         badGuys = new GameObjectContainer();
-        badGuys.add(new Monster(5,5,1,true));
-        badGuys.add(new Monster(10,2,1,false));
-        badGuys.add(new Monster(8,7,1,false));
+        badGuys.add(new Monster(5, 5, 1, true));
+        badGuys.add(new Monster(10, 2, 1, false));
+        badGuys.add(new Monster(8, 7, 1, false));
         badGuys.add(new Boss(10, 4, 1));
 
         setPreferredSize(new Dimension(1100, 800));
         setVisible(true);
-        m = new Maze(11, 10);
+        m = new Maze(20, 18);
     }
 
     @Override
     public void paint(Graphics graphics) {
-        gameObjectContainer.draw(graphics);
+        area.draw(graphics);
         badGuys.draw(graphics);
         if (hero != null) {
             hero.draw(graphics);
@@ -58,58 +58,54 @@ public class Board extends JComponent implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            int[] oldCoordinates = hero.getCoordinates();
-            int[] newCoordinates = new int[]{oldCoordinates[0]+1, oldCoordinates[1]};
-            if (gameObjectContainer.isValidStep(newCoordinates)) {
-                hero.moveRight();
+        if (hero != null) {
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                move("right", 1, 0, hero);
             }
-            hero.updateImage("hero-right.png");
-            repaint();
+            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                move("left", -1, 0, hero);
+            }
+            if (e.getKeyCode() == KeyEvent.VK_UP) {
+                move("up", 0, -1, hero);
+            }
+            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+                move("down", 0, 1, hero);
+            }
+            if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                handleBattle();
+            }
         }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            int[] oldCoordinates = hero.getCoordinates();
-            int[] newCoordinates = new int[]{oldCoordinates[0]-1, oldCoordinates[1]};
-            if (gameObjectContainer.isValidStep(newCoordinates)) {
-                hero.moveLeft();
-            }
-            hero.updateImage("hero-left.png");
-            repaint();
+        repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+
+    private void move(String direction, int x, int y, Character gameCharacter) {
+        int[] oldCoordinates = hero.getCoordinates();
+        int[] newCoordinates = new int[]{oldCoordinates[0] + x, oldCoordinates[1] + y};
+        if (area.isValidStep(newCoordinates)) {
+            gameCharacter.move(x, y);
         }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            int[] oldCoordinates = hero.getCoordinates();
-            int[] newCoordinates = new int[]{oldCoordinates[0], oldCoordinates[1]-1};
-            if (gameObjectContainer.isValidStep(newCoordinates)) {
-                hero.moveUp();
-            }
-            hero.updateImage("hero-up.png");
-            repaint();
+        if (gameCharacter.equals(hero)) {
+            hero.updateImage(String.format("hero-%s.png", direction));
         }
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            int[] oldCoordinates = hero.getCoordinates();
-            int[] newCoordinates = new int[]{oldCoordinates[0], oldCoordinates[1]+1};
-            if (gameObjectContainer.isValidStep(newCoordinates)) {
-                hero.moveDown();
+    }
+
+    private void handleBattle() {
+        int[] heroCoordinates = hero.getCoordinates();
+        if (badGuys.get(heroCoordinates) != null) {
+            Character opponent = (Character) badGuys.get(heroCoordinates);
+            hero.battle(opponent);
+            if (checkHeroState()) {
+                postBattleCleanUp(opponent);
+                levelUp();
             }
-            hero.updateImage("hero-down.png");
-            repaint();
-        }
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            int[] heroCoordinates = hero.getCoordinates();
-            if (badGuys.get(heroCoordinates) != null) {
-                Character opponent = (Character) badGuys.get(heroCoordinates);
-                hero.battle(opponent);
-                if (checkHeroState()) {
-                    postBattleCleanUp(opponent);
-                    levelUp();
-                }
-            }
-            repaint();
         }
     }
 
@@ -138,22 +134,17 @@ public class Board extends JComponent implements KeyListener {
     }
 
     private void generateNewArea() {
-        gameObjectContainer.clear();
+        area.clear();
         map = m.generate();
-        gameObjectContainer.add(map);
+        area.add(map);
     }
 
     private void generateNewOpponents() {
         badGuys.clear();
-        for (int i = 0; i < (hero.getLevel()/3 > 2 ? hero.getLevel()/3 : 2); i++) {
-            badGuys.add(new Monster(gameObjectContainer.getRandomValidCoordinates(),hero.getLevel(),false));
+        for (int i = 0; i < (hero.getLevel() / 3 > 2 ? hero.getLevel() / 3 : 2); i++) {
+            badGuys.add(new Monster(area.getRandomValidCoordinates(), hero.getLevel(), false));
         }
-        badGuys.add(new Boss(gameObjectContainer.getRandomValidCoordinates(), hero.getLevel()));
-        badGuys.add(new Monster(gameObjectContainer.getRandomValidCoordinates(),hero.getLevel(),true));
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
+        badGuys.add(new Monster(area.getRandomValidCoordinates(), hero.getLevel(), true));
+        badGuys.add(new Boss(area.getRandomValidCoordinates(), hero.getLevel()));
     }
 }

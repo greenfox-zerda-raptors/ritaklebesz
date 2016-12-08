@@ -3,7 +3,7 @@ import java.util.Random;
 /**
  * Created by Rita on 2016-12-06.
  */
-public abstract class Character extends GameObject {
+public class Character extends GameObject {
     protected int HP, maxHP, DP, SP, level;
     protected boolean hasKey;
 
@@ -17,10 +17,10 @@ public abstract class Character extends GameObject {
         this.hasKey = hasKey;
     }
 
-    public abstract void moveUp();
-    public abstract void moveDown();
-    public abstract void moveLeft();
-    public abstract void moveRight();
+    public void move(int x, int y) {
+        posX += x;
+        posY += y;
+    }
 
     public void battle(Character attackedCharacter) {
         attackedCharacter.attacked(strike());
@@ -28,19 +28,19 @@ public abstract class Character extends GameObject {
     }
 
     public int strike() {
-        int SV = SP + 2*rollDice();
+        int SV = SP + 2 * rollDice();
         return SV;
     }
 
     public void attacked(int SV) {
         if (SV > DP) {
-            HP = HP - (SV-DP);
+            HP = HP - (SV - DP);
         }
     }
 
     public int rollDice() {
         Random random = new Random();
-        return random.nextInt(6)+1;
+        return random.nextInt(6) + 1;
     }
 
     public boolean isAlive() {
