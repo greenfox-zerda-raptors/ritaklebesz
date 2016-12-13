@@ -80,7 +80,7 @@ public final class TestJavaUtilBirthdayCalculator {
         Thread.sleep(1000);
         GregorianCalendar nextYearGregorianCalendar = createNextYearGregorianCalendar();
         // -1 day because elapsed time between the creation and evaluation
-        int expectedDays = calculateDifference(gregorianCalendar, nextYearGregorianCalendar, TimeUnit.DAYS) - 1;
+        int expectedDays = calculateDifference(gregorianCalendar, nextYearGregorianCalendar, TimeUnit.DAYS);
         assertEquals(expectedDays, birthdayCalculator.calculateDaysToNextAnniversary(gregorianCalendar.getTime()));
 
         siftCalendarWithDays(gregorianCalendar, 1);
