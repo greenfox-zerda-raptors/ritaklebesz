@@ -84,7 +84,6 @@ public final class BirthdayWithJavaUtilDate implements BirthdayCalculator<Date> 
                 today.add(GregorianCalendar.DAY_OF_MONTH, 1);
                 diffDays++;
             }
-//            diffDays -= 1;
         }
         return diffDays;
     }

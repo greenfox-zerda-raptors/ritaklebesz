@@ -1,5 +1,6 @@
 package date;
 
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 
 import java.util.Scanner;
@@ -11,32 +12,47 @@ public class BirthdayWithJodaTime implements BirthdayCalculator<LocalDate> {
 
     @Override
     public LocalDate parseDate(String str) {
-        // TODO - return with the parsed date; format is: yyyy-MM-dd
-        return null;
+        String[] dateArray = str.split("-");
+        LocalDate date = new LocalDate(Integer.valueOf(dateArray[0]), Integer.valueOf(dateArray[1]), Integer.valueOf(dateArray[2]));
+        return date;
     }
 
     @Override
     public String printMonthAndDay(LocalDate date) {
-        // TODO - return the date formatted: month & day (MM. dd.)
-        return null;
+        return (date.getMonthOfYear() < 10 ? "0" + date.getMonthOfYear() : date.getMonthOfYear()) + ". " +
+                (date.getDayOfMonth() < 10 ? "0" + date.getDayOfMonth() : date.getDayOfMonth()) + ".";
     }
 
     @Override
     public boolean isAnniversaryToday(LocalDate date) {
-        // TODO - return with true if today is the same month+day as date
-        return false;
+        LocalDate today = new LocalDate();
+        return printMonthAndDay(today).equals(printMonthAndDay(date));
     }
 
     @Override
     public int calculateAgeInYears(LocalDate birthday) {
-        // TODO - return how many years age the input date 'birthday' was
-        return -1;
+        LocalDate today = new LocalDate();
+        if (today.getMonthOfYear() < birthday.getMonthOfYear() || today.getMonthOfYear() == birthday.getMonthOfYear() && today.getDayOfMonth() < birthday.getDayOfMonth()) {
+            return today.getYear() - birthday.getYear() - 1;
+        }
+        return today.getYear() - birthday.getYear();
     }
 
     @Override
     public int calculateDaysToNextAnniversary(LocalDate date) {
-        // TODO - the number of days remaining to the next anniversary of 'date' (e.g. if tomorrow, return 1)
-        return -1;
+        LocalDate today = new LocalDate();
+        LocalDate birthday = date.plusYears(calculateAgeInYears(date));
+        Days d;
+        int days = 0;
+        if (today.isBefore(birthday)) {
+            d = Days.daysBetween(today, birthday);
+            days = d.getDays();
+        } else if (today.isAfter(birthday)) {
+            birthday = birthday.plusYears(1);
+            d = Days.daysBetween(today, birthday);
+            days = d.getDays();
+        }
+        return days;
     }
 
     public static void main(String[] args) {

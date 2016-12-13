@@ -37,6 +37,7 @@ public class TestJodaTimeBirthdayCalculator {
     public void testPrintMonthAndDay() throws Exception {
         String monthAndDay = birthdayCalculator.printMonthAndDay(EXPECTED_DATE);
         assertEquals("11. 30.", monthAndDay);
+        assertEquals("01. 08.", birthdayCalculator.printMonthAndDay(new LocalDate(2016, 1, 8)));
     }
 
     @Test(expected = NullPointerException.class)
@@ -60,6 +61,7 @@ public class TestJodaTimeBirthdayCalculator {
     public void testCalculateAgeInYears() throws Exception {
         int expected = LocalDate.now().getYear() - EXPECTED_DATE.getYear();
         assertEquals(expected, birthdayCalculator.calculateAgeInYears(EXPECTED_DATE));
+        assertEquals(29, birthdayCalculator.calculateAgeInYears(new LocalDate(1986, 12, 15)));
     }
 
     @Test(expected = NullPointerException.class)
