@@ -11,6 +11,14 @@ public class Account {
     @DatabaseField(canBeNull = false)
     private String password;
 
+    public Account() {
+    }
+
+    public Account(String name, String password) {
+        this.name = name;
+        this.password = password;
+    }
+
     public String getName() {
         return name;
     }
