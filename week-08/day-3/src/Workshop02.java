@@ -1,12 +1,14 @@
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Workshop02 {
     public static void main(String[] args) throws SQLException {
@@ -23,8 +25,10 @@ public class Workshop02 {
             createAccountIfNotExists(accountDao, new Account(customer));
         }
 
-        for (String customer : newCustomers) {
-            System.out.println(accountDao.queryForId(customer).getName());
+        QueryBuilder<Account, String> queryBuilder = accountDao.queryBuilder();
+        List<Account> accounts = queryBuilder.orderBy("name", true).query();
+        for (Account account : accounts) {
+            System.out.println(account.getName());
         }
     }
 
