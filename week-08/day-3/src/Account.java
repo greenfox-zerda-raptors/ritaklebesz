@@ -10,6 +10,8 @@ public class Account {
     private String name;
     @DatabaseField
     private String password;
+    @DatabaseField(columnName = "addrID", foreign = true, foreignAutoCreate = true)
+    private Address address;
 
     public Account() {
     }
@@ -21,6 +23,12 @@ public class Account {
     public Account(String name, String password) {
         this.name = name;
         this.password = password;
+    }
+
+    public Account(String name, String password, Address address) {
+        this.name = name;
+        this.password = password;
+        this.address = address;
     }
 
     public String getName() {
@@ -37,5 +45,21 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + '\'' +
+                "name='" + name + '\'' +
+                ", address=" + address.toString() + '\'' +
+                '}';
     }
 }
