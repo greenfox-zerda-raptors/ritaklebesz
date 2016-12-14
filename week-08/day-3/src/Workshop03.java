@@ -1,10 +1,12 @@
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Workshop03 {
     public static void main(String[] args) throws SQLException {
@@ -57,7 +59,15 @@ public class Workshop03 {
     }
 
     private static void createAddressIfNotExists(Dao<Address, Integer> addressDao, Address addr) throws SQLException {
-        if (addressDao.queryForId(addr.getAddrID()) == null) {
+        QueryBuilder<Address, Integer> queryBuilder = addressDao.queryBuilder();
+        List<Address> isAddress = queryBuilder.where().eq("street", addr.getStreet()).
+                and().
+                eq("city", addr.getCity()).
+                and().
+                eq("country", addr.getCountry()).
+                and().
+                eq("postcode", addr.getPostcode()).query();
+        if (isAddress.size() == 0) {
             addressDao.create(addr);
         }
     }
