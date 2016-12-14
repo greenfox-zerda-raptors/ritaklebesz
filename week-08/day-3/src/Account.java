@@ -8,10 +8,14 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Account {
     @DatabaseField(id = true)
     private String name;
-    @DatabaseField(canBeNull = false)
+    @DatabaseField
     private String password;
 
     public Account() {
+    }
+
+    public Account(String name) {
+        this(name, "1234");
     }
 
     public Account(String name, String password) {

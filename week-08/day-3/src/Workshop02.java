@@ -5,6 +5,8 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Workshop02 {
     public static void main(String[] args) throws SQLException {
@@ -16,11 +18,14 @@ public class Workshop02 {
 
         Dao<Account, String> accountDao = DaoManager.createDao(connectionSource, Account.class);
 
-        Account account = new Account("Captain America", "uejnsd632**234.");
-        createAccountIfNotExists(accountDao, account);
+        ArrayList<String> newCustomers = new ArrayList<>(Arrays.asList("Captain America", "Iron Man", "Wolverine", "Hulk", "Loki"));
+        for (String customer : newCustomers) {
+            createAccountIfNotExists(accountDao, new Account(customer));
+        }
 
-        account = accountDao.queryForId("Captain America");
-        System.out.println("Account: " + account.toString());
+        for (String customer : newCustomers) {
+            System.out.println(accountDao.queryForId(customer).getName());
+        }
     }
 
     private static void createAccountIfNotExists(Dao<Account, String> accountDao, Account acc) throws SQLException {
