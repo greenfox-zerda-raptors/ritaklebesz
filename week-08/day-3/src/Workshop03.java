@@ -17,19 +17,48 @@ public class Workshop03 {
 
         Dao<Account, String> accountDao =
                 DaoManager.createDao(connectionSource, Account.class);
+        Dao<Address, Integer> addressDao =
+                DaoManager.createDao(connectionSource, Address.class);
 
 
         Account account = new Account("Captain America", "uejnsd632**234.", new Address("Andrassy ut 66.", "Budapest", "Hungary", 1066));
         System.out.println(account.toString());
         createAccountIfNotExists(accountDao, account);
 
-        account = accountDao.queryForId("Captain America");
-        System.out.println("Account: " + account.toString());
+        Account account2 = new Account("Hulk", "ufstsd632**603.");
+        createAccountIfNotExists(accountDao, account2);
+        Address address = new Address("Andrassy ut 70.", "Budapest", "Hungary", 1066);
+        createAddressIfNotExists(addressDao, address);
+        account2.setAddress(address);
+        accountDao.update(account2);
+        accountDao.refresh(account2);
+        addressDao.refresh(account2.getAddress());
+
+        Account account3 = new Account("Batman", "ufdssd632**182.");
+        createAccountIfNotExists(accountDao, account3);
+        account3.setAddress(new Address("Andrassy ut 78.", "Budapest", "Hungary", 1066));
+        createAddressIfNotExists(addressDao, account3.getAddress());
+        accountDao.update(account3);
+
+        Account account4 = new Account("Iron Man", "uejnsd632**278.", new Address("Andrassy ut 66.", "Budapest", "Hungary", 1066));
+        createAccountIfNotExists(accountDao, account4);
+
+
+//        account = accountDao.queryForId("Captain America");
+//        System.out.println("Account: " + account.toString());
+//        account2 = accountDao.queryForId("Hulk");
+//        System.out.println("Account: " + account2.toString());
     }
 
     private static void createAccountIfNotExists(Dao<Account, String> accountDao, Account acc) throws SQLException {
         if (accountDao.queryForId(acc.getName()) == null) {
             accountDao.create(acc);
+        }
+    }
+
+    private static void createAddressIfNotExists(Dao<Address, Integer> addressDao, Address addr) throws SQLException {
+        if (addressDao.queryForId(addr.getAddrID()) == null) {
+            addressDao.create(addr);
         }
     }
 }
