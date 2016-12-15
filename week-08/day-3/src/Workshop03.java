@@ -25,6 +25,7 @@ public class Workshop03 {
 
         Account account = new Account("Captain America", "uejnsd632**234.", new Address("Andrassy ut 66.", "Budapest", "Hungary", 1066));
         System.out.println(account.toString());
+        System.out.println(account.getAddress().toString());
         createAccountIfNotExists(accountDao, account);
 
         Account account2 = new Account("Hulk", "ufstsd632**603.");
@@ -46,10 +47,11 @@ public class Workshop03 {
         createAccountIfNotExists(accountDao, account4);
 
 
-//        account = accountDao.queryForId("Captain America");
-//        System.out.println("Account: " + account.toString());
-//        account2 = accountDao.queryForId("Hulk");
-//        System.out.println("Account: " + account2.toString());
+        account = accountDao.queryForId("Captain America");
+        System.out.println("Account: " + account.toString());
+        account2 = accountDao.queryForId("Hulk");
+        System.out.println("Account: " + account2.toString());
+
     }
 
     private static void createAccountIfNotExists(Dao<Account, String> accountDao, Account acc) throws SQLException {
