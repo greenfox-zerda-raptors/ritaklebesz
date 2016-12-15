@@ -77,4 +77,12 @@ public class ListOfItems {
             }
         }
     }
+
+    public int size() {
+        return listOfItems.size();
+    }
+
+    public Item get(int i) {
+        return listOfItems.get(i);
+    }
 }

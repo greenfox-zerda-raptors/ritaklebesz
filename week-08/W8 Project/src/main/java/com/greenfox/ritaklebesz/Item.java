@@ -54,10 +54,6 @@ public class Item implements Comparable<Item> {
         return number + " - " + (done ? "[X] " : "[ ] ") + task;
     }
 
-    public String towrite() {
-        return number + (done ? " 1 " : " 0 ") + task;
-    }
-
     public int getNumber() {
         return number;
     }
