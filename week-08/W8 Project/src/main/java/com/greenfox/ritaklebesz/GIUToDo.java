@@ -18,13 +18,8 @@ public class GIUToDo extends JPanel {
     @Getter
     JTextField textField;
     GUIListOfItems tasks;
-    JFrame frame;
 
     public GIUToDo() throws SQLException {
-        frame = new JFrame();
-        frame.add(this);
-        frame.setTitle("ToDo App");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         textField = new JTextField("Add your tasks here");
         tasks = new GUIListOfItems();
         textField.addMouseListener(new MouseListener() {
@@ -55,16 +50,13 @@ public class GIUToDo extends JPanel {
                 try {
                     tasks.getTasks().add(new Item(textField.getText()));
                     tasks.getItemContainer().removeAll();
+                    tasks.generateItemPanels();
                     tasks.getItemContainer().revalidate();
                     tasks.getItemContainer().repaint();
-                    frame.revalidate();
-                    frame.repaint();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
                 textField.setText("Add your new tasks here");
-                frame.revalidate();
-                frame.repaint();
             }
         });
         textField.setMaximumSize(new Dimension(500, 30));
@@ -72,12 +64,5 @@ public class GIUToDo extends JPanel {
         this.add(tasks.getItemContainer());
         this.setPreferredSize(new Dimension(500, 600));
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        frame.pack();
-        frame.setVisible(true);
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Dimension dim = tk.getScreenSize();
-        int xPos = (dim.width / 2) - (frame.getWidth() / 2);
-        int yPos = (dim.height / 2) - (frame.getHeight() / 2);
-        frame.setLocation(xPos, yPos);
     }
 }

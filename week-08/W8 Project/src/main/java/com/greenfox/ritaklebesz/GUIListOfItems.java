@@ -23,10 +23,14 @@ public class GUIListOfItems {
     public GUIListOfItems() throws SQLException {
         tasks = new ListOfItems();
         itemContainer = new JPanel();
+        generateItemPanels();
+        itemContainer.setLayout(new BoxLayout(itemContainer, BoxLayout.PAGE_AXIS));
+        itemContainer.setPreferredSize(new Dimension(500, 600));
+    }
 
+    public void generateItemPanels() {
         Image image = Toolkit.getDefaultToolkit()
                 .createImage("D:\\Green Fox Academy\\greenfox\\ritaklebesz\\week-06\\SecondProject\\src\\delete.png");
-
         for (int i = 0; i < tasks.size(); i++) {
             final int itemID = tasks.get(i).getNumber();
             JPanel itemPanel = new JPanel();
@@ -40,6 +44,7 @@ public class GUIListOfItems {
                     try {
                         tasks.remove(itemID);
                         itemContainer.removeAll();
+                        generateItemPanels();
                         itemContainer.revalidate();
                         itemContainer.repaint();
                     } catch (SQLException e1) {
@@ -54,6 +59,7 @@ public class GUIListOfItems {
                     try {
                         tasks.complete(itemID);
                         itemContainer.removeAll();
+                        generateItemPanels();
                         itemContainer.revalidate();
                         itemContainer.repaint();
                     } catch (SQLException e1) {
@@ -66,7 +72,5 @@ public class GUIListOfItems {
             itemPanel.add(deleteButton);
             itemContainer.add(itemPanel);
         }
-        itemContainer.setLayout(new BoxLayout(itemContainer, BoxLayout.PAGE_AXIS));
-        itemContainer.setPreferredSize(new Dimension(500, 600));
     }
 }
