@@ -1,5 +1,6 @@
 package com.greenfox.ritaklebesz;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ public class ToDo {
     final ArrayList<String> commands = new ArrayList<>(Arrays.asList("list", "l", "add", "a", "remove", "r", "complete", "c", "help", "h", "quit", "q"));
     final ArrayList<String> explanation = new ArrayList<>(Arrays.asList("Lists all the tasks", "shorthand for list", "Adds a new task", "shorthand for add", "Removes an task", "shorthand for remove", "Completes an task", "shorthand for complete", "Print out this list again", "shorthand for help", "Quit the app", "shorthand for quit"));
 
-    public ToDo() {
+    public ToDo() throws SQLException {
         userInput = new Scanner(System.in);
         listOfItems = new ListOfItems();
         argument = "";
@@ -85,8 +86,7 @@ public class ToDo {
         }
     }
 
-    private void exit() {
-        listOfItems.loadToFile();
+    private void exit() throws SQLException {
         userInput.close();
         System.out.println("Bye!");
         System.exit(0);

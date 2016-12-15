@@ -1,94 +1,64 @@
 package com.greenfox.ritaklebesz;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
+
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Rita on 2016-11-17.
  */
 public class ListOfItems {
 
-    public ArrayList<Item> listOfItems;
-    public String sourcePath = "D:/Green Fox Academy/greenfox/ritaklebesz/week-05/Project/todoList.csv";
-    public File file = new File(sourcePath);
+    private List<Item> listOfItems;
+    private String databaseUrl = "jdbc:mysql://127.0.0.1:3306/todoappdb?user=root&password=rita1";
+    private ConnectionSource connectionSource = new JdbcConnectionSource(databaseUrl);
+    private Dao<Item, Integer> itemDao = DaoManager.createDao(connectionSource, Item.class);
+    private QueryBuilder<Item, Integer> queryBuilder = itemDao.queryBuilder();
 
-    public ListOfItems() {
-        listOfItems = new ArrayList();
-        loadFromFile();
+    public ListOfItems() throws SQLException {
+        loadFromDatabase();
     }
 
-    public void loadFromFile() {
-        BufferedReader br = null;
+    private void loadFromDatabase() throws SQLException {
+        TableUtils.createTableIfNotExists(connectionSource, Item.class);
+        listOfItems = queryBuilder.orderBy("done", true).where().eq("archived", 0).query();
+    }
 
-        try {
-            if (!file.exists()) {
-                file.createNewFile();
+    public void addItemIfNotExists(Item item) throws SQLException {
+        if (itemDao.queryForId(item.getNumber()) == null) {
+            itemDao.create(item);
+        }
+    }
+
+    public void add(Item item) throws SQLException {
+        addItemIfNotExists(item);
+        loadFromDatabase();
+    }
+
+    public void remove(int num) throws SQLException {
+        for (Item item : listOfItems) {
+            if (num == item.getNumber()) {
+                item.setArchived(true);
+                itemDao.update(item);
             }
+        }
+        loadFromDatabase();
+    }
 
-            String line;
-
-            br = new BufferedReader(new FileReader(file));
-
-            while ((line = br.readLine()) != null) {
-                ArrayList<String> itemToAdd = new ArrayList<>(Arrays.asList(line.split(" ", 3)));
-                listOfItems.add(new Item(Integer.valueOf(itemToAdd.get(0)), (Integer.valueOf(itemToAdd.get(1)).equals(1)), itemToAdd.get(2)));
+    public void complete(int num) throws SQLException {
+        for (Item item : listOfItems) {
+            if (num == item.getNumber()) {
+                item.setDone(true);
+                itemDao.update(item);
             }
-            br.close();
-
-        } catch (IOException e) {
-            System.out.println("Something went wrong during reading the file");
         }
-    }
-
-    public void loadToFile() {
-        try {
-
-            String content;
-
-            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-            for (Item item : listOfItems) {
-                content = item.towrite();
-                bw.write(content);
-                bw.newLine();
-            }
-            bw.close();
-            System.out.println("Your list is saved.");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void add(Item item) {
-        listOfItems.add(0, item);
-        organize();
-    }
-
-    public void remove(int num) {
-        listOfItems.remove(num-1);
-        organize();
-    }
-
-    public void complete(int num) {
-        listOfItems.get(num-1).setDone(true);
-        organize();
-    }
-
-    public void organize() {
-        Collections.sort(listOfItems, Item.CompareByState);
-        for (int i = 0; i < listOfItems.size(); i++) {
-            listOfItems.get(i).setNumber(i+1);
-        }
-    }
-
-    public boolean isEmpty() {
-        if (listOfItems.size() == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        loadFromDatabase();
     }
 
     @Override
