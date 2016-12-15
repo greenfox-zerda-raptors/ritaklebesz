@@ -52,12 +52,12 @@ public class GUIListOfItems {
                     }
                 }
             });
-            JCheckBox state = new JCheckBox(tasks.get(i).getTask(), tasks.get(i).isDone());
+            final JCheckBox state = new JCheckBox(tasks.get(i).getTask(), tasks.get(i).isDone());
             state.addItemListener(new ItemListener() {
                 @Override
                 public void itemStateChanged(ItemEvent e) {
                     try {
-                        tasks.complete(itemID);
+                        tasks.changeState(itemID, state);
                         itemContainer.removeAll();
                         generateItemPanels();
                         itemContainer.revalidate();

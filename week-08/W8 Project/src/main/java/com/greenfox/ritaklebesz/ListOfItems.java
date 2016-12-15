@@ -7,6 +7,7 @@ import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import javax.swing.*;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -55,6 +56,16 @@ public class ListOfItems {
         for (Item item : listOfItems) {
             if (num == item.getNumber()) {
                 item.setDone(true);
+                itemDao.update(item);
+            }
+        }
+        loadFromDatabase();
+    }
+
+    public void changeState(int num, JCheckBox box) throws SQLException {
+        for (Item item : listOfItems) {
+            if (num == item.getNumber()) {
+                item.setDone(box.isSelected());
                 itemDao.update(item);
             }
         }
