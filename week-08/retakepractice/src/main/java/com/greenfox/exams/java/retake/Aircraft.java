@@ -11,6 +11,7 @@ public abstract class Aircraft {
     }
 
     public abstract int getBaseDamage();
+
     public abstract int getMaxAmmo();
 
     public int fight() {
@@ -26,12 +27,12 @@ public abstract class Aircraft {
             return 0;
         } else {
             currentAmmo = getMaxAmmo();
-            return fillingAmmo-ammoNeeded;
+            return fillingAmmo - ammoNeeded;
         }
     }
 
-    public int getAllDamage () {
-        return getBaseDamage()*getMaxAmmo();
+    public int getAllDamage() {
+        return getBaseDamage() * getMaxAmmo();
     }
 
     @Override
