@@ -1,7 +1,5 @@
 package com.greenfox.ritaklebesz;
 
-import lombok.Getter;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +13,6 @@ import java.sql.SQLException;
  */
 public class GIUToDo extends JPanel {
 
-    @Getter
     JTextField textField;
     GUIListOfItems tasks;
 

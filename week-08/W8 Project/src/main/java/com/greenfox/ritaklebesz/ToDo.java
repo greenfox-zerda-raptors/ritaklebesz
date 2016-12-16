@@ -10,12 +10,12 @@ import java.util.Scanner;
  */
 public class ToDo {
 
-    Scanner userInput;
-    String argument;
-    String task;
-    String[] userInputProcessed = {argument, task};
-    String rawInput;
-    ListOfItems listOfItems;
+    private Scanner userInput;
+    private String argument;
+    private String task;
+    private String[] userInputProcessed = {argument, task};
+    private String rawInput;
+    private ListOfItems listOfItems;
     final ArrayList<String> commands = new ArrayList<>(Arrays.asList("list", "l", "add", "a", "remove", "r", "complete", "c", "help", "h", "quit", "q"));
     final ArrayList<String> explanation = new ArrayList<>(Arrays.asList("Lists all the tasks", "shorthand for list", "Adds a new task", "shorthand for add", "Removes an task", "shorthand for remove", "Completes an task", "shorthand for complete", "Print out this list again", "shorthand for help", "Quit the app", "shorthand for quit"));
 

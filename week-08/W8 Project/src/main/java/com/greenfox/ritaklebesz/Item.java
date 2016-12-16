@@ -2,21 +2,29 @@ package com.greenfox.ritaklebesz;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-
-import java.util.Comparator;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Created by Rita on 2016-11-17.
  */
 
 @DatabaseTable(tableName = "TodoItems")
-public class Item implements Comparable<Item> {
+public class Item {
+    @Getter
     @DatabaseField(generatedId = true)
     private int number;
+
+    @Getter
+    @Setter
     @DatabaseField
     private boolean done;
+
+    @Getter
     @DatabaseField
     private String task;
+
+    @Setter
     @DatabaseField
     private boolean archived;
 
@@ -38,51 +46,7 @@ public class Item implements Comparable<Item> {
     }
 
     @Override
-    public int compareTo(Item i) {
-        return this.getNumber() - i.getNumber();
-    }
-
-    public static Comparator<Item> CompareByState = new Comparator<Item>() {
-        @Override
-        public int compare(Item i1, Item i2) {
-            return (i1.isDone() ? 1 : 0) - (i2.isDone() ? 1 : 0);
-        }
-    };
-
-    @Override
     public String toString() {
         return number + " - " + (done ? "[X] " : "[ ] ") + task;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
-    }
-
-    public String getTask() {
-        return task;
-    }
-
-    public void setTask(String task) {
-        this.task = task;
-    }
-
-    public boolean isArchived() {
-        return archived;
-    }
-
-    public void setArchived(boolean archived) {
-        this.archived = archived;
     }
 }
