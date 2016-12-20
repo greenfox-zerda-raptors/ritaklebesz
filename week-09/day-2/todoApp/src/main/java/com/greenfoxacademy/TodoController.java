@@ -39,4 +39,11 @@ public class TodoController {
         model.addAttribute("todos", result);
         return "todo";
     }
+
+    @RequestMapping("/details/1")
+    public String listItemDetails(Model model) {
+        Todo item = todoService.getTodos().get(1);
+        model.addAttribute("item", item);
+        return "itemDetails";
+    }
 }

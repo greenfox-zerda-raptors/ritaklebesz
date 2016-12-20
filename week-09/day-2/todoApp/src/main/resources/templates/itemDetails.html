@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Item Details</title>
+</head>
+<body>
+<p th:text="'Item n.' + ${item.id}"></p>
+<form>
+    <ul>
+        <li th:text="'ID = ' + ${item.id}"></li>
+        <li th:text="'Task = ' + ${item.title}"></li>
+    </ul>
+    <div class="checkbox">
+        <input type="checkbox" value="DONE" id="done" name="done"/>
+        <label for="done">Done</label>
+    </div>
+    <div class="checkbox">
+        <input type="checkbox" value="URGENT" id="urgent" name="urgent"/>
+        <label for="urgent">Urgent</label>
+    </div>
+</form>
+</body>
+</html>
