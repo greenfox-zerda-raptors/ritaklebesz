@@ -12,11 +12,12 @@
         <li th:text="'Task = ' + ${item.title}"></li>
     </ul>
     <div class="checkbox">
-        <input type="checkbox" value="DONE" id="done" name="done"/>
+        <input type="checkbox" value="DONE" id="done" name="done" th:checked="${item.isDone()}" th:disabled="disabled"/>
         <label for="done">Done</label>
     </div>
     <div class="checkbox">
-        <input type="checkbox" value="URGENT" id="urgent" name="urgent"/>
+        <input type="checkbox" value="URGENT" id="urgent" name="urgent" th:checked="${item.isUrgent()}"
+               th:disabled="disabled"/>
         <label for="urgent">Urgent</label>
     </div>
 </form>

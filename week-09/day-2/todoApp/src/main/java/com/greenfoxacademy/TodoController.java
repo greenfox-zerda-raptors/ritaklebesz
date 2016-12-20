@@ -3,6 +3,7 @@ package com.greenfoxacademy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -40,10 +41,13 @@ public class TodoController {
         return "todo";
     }
 
-    @RequestMapping("/details/1")
-    public String listItemDetails(Model model) {
-        Todo item = todoService.getTodos().get(1);
-        model.addAttribute("item", item);
+    @RequestMapping("/details/{itemID}")
+    public String listItemDetails(Model model, @PathVariable int itemID) {
+        for (Todo item : todoService.getTodos()) {
+            if (item.getId() == itemID) {
+                model.addAttribute("item", item);
+            }
+        }
         return "itemDetails";
     }
 }
