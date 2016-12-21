@@ -7,7 +7,7 @@
 <body>
 <h1>Add new todo</h1>
 <form action="#" th:action="@{/todo/add}" th:object="${item}" method="post">
-    <p>Id: <input type="text" th:field="*{id}" th:disabled="disabled"/></p>
+    <p>Id: <input type="text" th:field="${item.id}" th:disabled="disabled"/></p>
     <p>Task: <input type="text" th:field="${item.title}"/></p>
     <p>Done: <input type="checkbox" th:field="${item.done}"/></p>
     <p>Urgent: <input type="checkbox" th:field="${item.urgent}"/></p>

@@ -58,6 +58,6 @@ public class TodoController {
     @PostMapping(value = "/add")
     public String submitNewItem(@ModelAttribute Todo item) {
         todoService.addTodo(item);
-        return "todo";
+        return "redirect:list";
     }
 }
