@@ -5,9 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by Rita on 2016-12-20.
  */
@@ -24,28 +21,17 @@ public class TodoController {
 
     @RequestMapping(value = {"/", "/list"})
     public String list(Model model, @RequestParam(name = "active", required = false) String active) {
-        List<Todo> list = todoService.getTodos();
-        List<Todo> result = new ArrayList<>();
         if (active != null && active.equals("active")) {
-            for (Todo todo : list) {
-                if (!todo.isDone()) {
-                    result.add(todo);
-                }
-            }
+            model.addAttribute("todos", todoService.getActiveTodos());
         } else {
-            result = list;
+            model.addAttribute("todos", todoService.getTodos());
         }
-        model.addAttribute("todos", result);
         return "todo";
     }
 
     @RequestMapping("/details/{itemID}")
     public String listItemDetails(Model model, @PathVariable int itemID) {
-        for (Todo item : todoService.getTodos()) {
-            if (item.getId() == itemID) {
-                model.addAttribute("item", item);
-            }
-        }
+        model.addAttribute("item", todoService.getTodoBasedOnId(itemID));
         return "itemDetails";
     }
 

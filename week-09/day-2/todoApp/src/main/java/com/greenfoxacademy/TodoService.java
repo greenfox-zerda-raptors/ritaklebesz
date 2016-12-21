@@ -27,4 +27,23 @@ public class TodoService {
         }
         fakeTodoStore.add(todo);
     }
+
+    public List<Todo> getActiveTodos() {
+        List<Todo> result = new ArrayList<>();
+        for (Todo todo : fakeTodoStore) {
+            if (!todo.isDone()) {
+                result.add(todo);
+            }
+        }
+        return result;
+    }
+
+    public Todo getTodoBasedOnId(int itemID) {
+        for (Todo item : fakeTodoStore) {
+            if (item.getId() == itemID) {
+                return item;
+            }
+        }
+        return null;
+    }
 }
