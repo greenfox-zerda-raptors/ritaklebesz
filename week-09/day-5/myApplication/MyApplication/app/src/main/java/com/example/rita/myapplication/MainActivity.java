@@ -12,6 +12,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -52,30 +53,43 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         service = retrofit.create(MessageService.class);
-
+        refreshMessages();
 
     }
 
     public void sendMessage(View view) {
-        Message messageToSend = new Message("Rita&Sopi", editText.getText().toString());
+        Message messageToSend = new Message("RitaAndSopi", editText.getText().toString());
         arrayAdapter.add(messageToSend);
         editText.setText("");
         service.postMessageCall(new MessageWrapper(messageToSend)).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.code() == 200) {
-                    // itt csinálhatunk valamit, mert tudjuk, hogy sikeresen elküldtük a szervernek az adatokat
-                    // pl frissíthetjük az üzeneteink listáját (új lekérés a szervertől)
-                }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 System.out.println("rossz");
-                // itt valami elbaszarintódott, logoljuk ki, adjunk hibaüzenetet, valami.
+            }
+        });
+        refreshMessages();
+    }
+
+    protected void refresh(View v){
+        refreshMessages();
+    }
+
+    protected void refreshMessages() {
+        service.getMessageCall().enqueue(new Callback<List<Message>>() {
+            @Override
+            public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
+                arrayAdapter.clear();
+                arrayAdapter.addAll(response.body());
+            }
+            @Override
+            public void onFailure(Call<List<Message>> call, Throwable t) {
+                t.printStackTrace();
             }
         });
     }
-
 
 }
