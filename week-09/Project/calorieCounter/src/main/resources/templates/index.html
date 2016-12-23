@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" href="../static/index.css" th:href="@{/index.css}"/>
+<link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Raleway" rel="stylesheet"/>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Calorie Counter</title>
+</head>
+<body>
+<h1>Calorie Counter</h1>
+<table>
+    <thead>
+    <th>Date</th>
+    <th>Type</th>
+    <th>Description</th>
+    <th>TotalCalories (KCal)</th>
+    <th></th>
+    </thead>
+    <tbody>
+    <tr>
+        <td>2016-12-23</td>
+        <td>
+            <form>
+                <select>
+                    <option>Breakfast</option>
+                    <option>Elevenses</option>
+                    <option>Lunch</option>
+                    <option>Snack</option>
+                    <option>Dinner</option>
+                    <option>Midnight Snack</option>
+                </select>
+            </form>
+        </td>
+        <td>Pasta</td>
+        <td>800</td>
+        <td>
+            <button>Add/Edit</button>
+            <button>Delete</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<p>Total Calories: 800</p>
+<p>Number of meals: 1</p>
+<table>
+    <thead>
+    <th>Type of meal</th>
+    <th>Count</th>
+    <th>TotalCalories</th>
+    </thead>
+</table>
+<button>Add new meal</button>
+<div>
+    <a href="#" class="nav">&lt;</a><a href="#" class="nav">&lt;&lt;</a><a href="#" class="nav">&gt;&gt;</a><a href="#"
+                                                                                                               class="nav">
+    &gt;</a>
+    <form>
+        <label>Number of items to list:</label>
+        <select>
+            <option>25</option>
+            <option>50</option>
+            <option>100</option>
+        </select>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: bisque;
+    font-family: 'Raleway', sans-serif;
+    font-size: 12px;
+
+}
+
+h1 {
+    font-family: 'Aref Ruqaa', serif;
+    font-size: 36px;
+    text-align: center;
+}
