@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Log.d("sdsd", "dsdsds");
                 refreshMessages();
 
             }
@@ -80,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                System.out.println("rossz");
             }
         });
         refreshMessages();
