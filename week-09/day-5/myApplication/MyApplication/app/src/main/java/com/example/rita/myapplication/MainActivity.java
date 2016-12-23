@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -31,6 +32,12 @@ public class MainActivity extends AppCompatActivity {
                 new Message("User2", "Random text 2", "2016-12-23"),
                 new Message("User3", "Random text 3", "2016-12-23")
         ));
+//        ArrayAdapter<Message> arrayAdapter =
+//                new ArrayAdapter<Message>(this,android.R.layout.simple_list_item_1, listOfMessages);
+        MessageAdapter arrayAdapter = new MessageAdapter(this);
+        arrayAdapter.addAll(listOfMessages);
+//        MessageAdapter arrayAdapter = new MessageAdapter(this, listOfMessages);
+        listView.setAdapter(arrayAdapter);
     }
 
     public void sendMessage(View view) {

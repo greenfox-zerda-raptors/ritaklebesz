@@ -10,14 +10,11 @@ import lombok.Setter;
 /**
  * Created by Rita on 2016-12-23.
  */
-@NoArgsConstructor
-@Getter
-@Setter
-@AllArgsConstructor
+
 public class Message {
-    private String name;
-    private String text;
-    private String time;
+    public String name;
+    public String text;
+    public String time;
     
     public Message(String name, String text, String time){
         this.name = name;
@@ -27,5 +24,29 @@ public class Message {
     
     public String toString(){
         return String.format("Sent by: %s, %s, on %s", name, text, time);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
