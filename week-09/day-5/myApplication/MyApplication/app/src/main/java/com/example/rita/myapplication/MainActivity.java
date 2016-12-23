@@ -1,8 +1,10 @@
 package com.example.rita.myapplication;
 
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     MessageAdapter arrayAdapter;
     MessageService service;
+    SwipeRefreshLayout refresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button);
         editText = (EditText) findViewById(R.id.editText);
         listView = (ListView) findViewById(R.id.listView);
+        refresh = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.d("sdsd", "dsdsds");
+                refreshMessages();
+
+            }
+        });
         ArrayList<Message> listOfMessages = new ArrayList<>();
         arrayAdapter = new MessageAdapter(this);
         arrayAdapter.addAll(listOfMessages);
@@ -84,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Message>> call, Response<List<Message>> response) {
                 arrayAdapter.clear();
                 arrayAdapter.addAll(response.body());
+                refresh.setRefreshing(false);
             }
             @Override
             public void onFailure(Call<List<Message>> call, Throwable t) {
