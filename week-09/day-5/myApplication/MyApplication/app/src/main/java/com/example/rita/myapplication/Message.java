@@ -1,6 +1,8 @@
 package com.example.rita.myapplication;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,41 +14,49 @@ import lombok.Setter;
  */
 
 public class Message {
-    public String name;
-    public String text;
-    public String time;
+    public String username;
+    public String body;
+    public String created_at;
+    SimpleDateFormat sdfin = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+    SimpleDateFormat sdfout = new SimpleDateFormat("MMM dd yyyy, HH:mm");
     
-    public Message(String name, String text, String time){
-        this.name = name;
-        this.text = text;
-        this.time = time;
+    public Message(String name, String text){
+        this.username = name;
+        this.body = text;
+        this.created_at = "";
     }
     
     public String toString(){
-        return String.format("Sent by: %s, %s, on %s", name, text, time);
+        return String.format("Sent by: %s, %s, on %s", username, body, created_at);
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public String getText() {
-        return text;
+        return body;
     }
 
     public void setText(String text) {
-        this.text = text;
+        this.body = text;
     }
 
     public String getTime() {
-        return time;
+        try {
+            return sdfout.format(sdfin.parse(created_at));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
+
     public void setTime(String time) {
-        this.time = time;
+        this.created_at = time;
     }
 }

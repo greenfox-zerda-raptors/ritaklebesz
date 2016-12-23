@@ -35,9 +35,11 @@ public class MessageAdapter extends ArrayAdapter<Message> {
         TextView time = (TextView) convertView.findViewById(R.id.textView);
         TextView name = (TextView) convertView.findViewById(R.id.textView2);
         TextView text = (TextView) convertView.findViewById(R.id.textView3);
-        time.setText(message.getTime());
+//        time.setText(message.getTime());
         name.setText(message.getName());
         text.setText(message.getText());
         return convertView;
     }
+
+
 }
