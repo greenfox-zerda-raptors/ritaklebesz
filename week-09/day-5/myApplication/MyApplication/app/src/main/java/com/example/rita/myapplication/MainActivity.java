@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     EditText editText;
     Button button;
+    MessageAdapter arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,26 +28,21 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.button);
         editText = (EditText) findViewById(R.id.editText);
         listView = (ListView) findViewById(R.id.listView);
-        ArrayList<Message> listOfMessages = new ArrayList<>(Arrays.asList(
-                new Message("User1", "Random text 1", "2016-12-23"),
-                new Message("User2", "Random text 2", "2016-12-23"),
-                new Message("User3", "Random text 3", "2016-12-23")
-        ));
-//        ArrayAdapter<Message> arrayAdapter =
-//                new ArrayAdapter<Message>(this,android.R.layout.simple_list_item_1, listOfMessages);
-        MessageAdapter arrayAdapter = new MessageAdapter(this);
+        ArrayList<Message> listOfMessages = new ArrayList<>();
+        arrayAdapter = new MessageAdapter(this);
         arrayAdapter.addAll(listOfMessages);
-//        MessageAdapter arrayAdapter = new MessageAdapter(this, listOfMessages);
         listView.setAdapter(arrayAdapter);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendMessage(v);
+            }
+        });
     }
 
     public void sendMessage(View view) {
-        
-//        Intent intent = new Intent(this, DisplayMessageActivity.class);
-//        
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
-//        startActivity(intent);
+        arrayAdapter.add(new Message("Rita&Sopi", editText.getText().toString(), (new Date()).toString()));
+        editText.setText("");
     }
 
 
