@@ -19,14 +19,14 @@ public class Message {
     public String created_at;
     SimpleDateFormat sdfin = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
     SimpleDateFormat sdfout = new SimpleDateFormat("MMM dd yyyy, HH:mm");
-    
-    public Message(String name, String text){
+
+    public Message(String name, String text) {
         this.username = name;
         this.body = text;
         this.created_at = "";
     }
-    
-    public String toString(){
+
+    public String toString() {
         return String.format("Sent by: %s, %s, on %s", username, body, created_at);
     }
 
@@ -46,15 +46,19 @@ public class Message {
         this.body = text;
     }
 
-    public String getTime() {
-        try {
-            return sdfout.format(sdfin.parse(created_at));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "";
+    public String getCreated_at() {
+        return created_at;
+//        try {
+//            return sdfout.format(sdfin.parse(created_at));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "";
     }
 
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
 
     public void setTime(String time) {
         this.created_at = time;
