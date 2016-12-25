@@ -15,4 +15,9 @@ public class CounterController {
     public String index() {
         return "index";
     }
+
+    @RequestMapping(value = {"/add"})
+    public String addOrEdit() {
+        return "add";
+    }
 }

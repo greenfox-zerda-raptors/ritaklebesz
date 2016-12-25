@@ -7,9 +7,11 @@ html {
 }
 
 body {
-    background-color: bisque;
+    background-color: #f4f4f4;
     font-family: 'Raleway', sans-serif;
     font-size: 12px;
+    width: 900px;
+    margin: 0 auto;
 
 }
 
@@ -17,4 +19,109 @@ h1 {
     font-family: 'Aref Ruqaa', serif;
     font-size: 36px;
     text-align: center;
+}
+
+table {
+    margin: 25px auto;
+    border-collapse: collapse;
+    border: 1px solid #eee;
+    border-bottom: 2px solid #00cccc;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.10),
+    0px 10px 20px rgba(0, 0, 0, 0.05),
+    0px 20px 20px rgba(0, 0, 0, 0.05),
+    0px 30px 20px rgba(0, 0, 0, 0.05);
+    width: 870px;
+}
+
+tr:hover {
+    background: cornsilk;
+}
+
+th, td {
+    color: #999;
+    border: 1px solid #eee;
+    padding: 12px 35px;
+    border-collapse: collapse;
+}
+
+th {
+    background: #00cccc;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+
+th.last {
+    border-right: none;
+}
+
+.newButton {
+    display: block;
+    margin: 25px auto;
+    width: 300px;
+    background-color: #00cccc;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: white;
+}
+
+.nav {
+    display: inline-block;
+    font-size: 18px;
+    margin: 0 5px;
+}
+
+.navigation {
+    display: flex;
+    margin: 10px 15px;
+}
+
+.sub-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 3.5;
+}
+
+.form-container {
+    display: flex;
+    align-items: flex-end;
+    flex-grow: 1;
+    flex-flow: column;
+}
+
+.form-container div {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.form-container div label {
+    margin-right: 5px;
+}
+
+.form-container div select {
+    margin-right: 100px;
+}
+
+#types {
+    margin-right: 30px;
+}
+
+.form-container button {
+    margin-right: 93px;
+}
+
+button {
+    background-color: #00cccc;
+    color: white;
+}
+
+p {
+    margin-left: 15px;
+    font-size: 18px;
+    color: darkcyan;
+    font-family: 'Aref Ruqaa', serif;
 }

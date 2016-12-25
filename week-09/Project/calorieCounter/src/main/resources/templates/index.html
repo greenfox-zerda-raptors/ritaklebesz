@@ -19,22 +19,11 @@
     <tbody>
     <tr>
         <td>2016-12-23</td>
-        <td>
-            <form>
-                <select>
-                    <option>Breakfast</option>
-                    <option>Elevenses</option>
-                    <option>Lunch</option>
-                    <option>Snack</option>
-                    <option>Dinner</option>
-                    <option>Midnight Snack</option>
-                </select>
-            </form>
-        </td>
+        <td>Lunch</td>
         <td>Pasta</td>
         <td>800</td>
         <td>
-            <button>Add/Edit</button>
+            <button>Edit</button>
             <button>Delete</button>
         </td>
     </tr>
@@ -49,19 +38,48 @@
     <th>TotalCalories</th>
     </thead>
 </table>
-<button>Add new meal</button>
-<div>
-    <a href="#" class="nav">&lt;</a><a href="#" class="nav">&lt;&lt;</a><a href="#" class="nav">&gt;&gt;</a><a href="#"
-                                                                                                               class="nav">
-    &gt;</a>
-    <form>
-        <label>Number of items to list:</label>
-        <select>
-            <option>25</option>
-            <option>50</option>
-            <option>100</option>
-        </select>
-    </form>
+<button class="newButton">Add new meal</button>
+<div class="navigation">
+    <div class="sub-container">
+        <a href="#" class="nav">&lt;&lt;</a>
+        <a href="#" class="nav">&lt;</a>
+        <a href="#" class="nav">&gt;</a>
+        <a href="#" class="nav">&gt;&gt;</a>
+    </div>
+    <div class="form-container">
+        <form>
+            <div>
+                <label>Number of items to list:</label>
+                <select>
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+            </div>
+            <div>
+                <label>Start date:</label>
+                <input type="date" name="startdate"/>
+            </div>
+            <div>
+                <label>End date:</label>
+                <input type="date" name="startdate"/>
+            </div>
+            <div>
+                <label>Meal type to list:</label>
+                <select id="types">
+                    <option>Breakfast</option>
+                    <option>Elevenses</option>
+                    <option>Lunch</option>
+                    <option>Snack</option>
+                    <option>Dinner</option>
+                    <option>Midnight Snack</option>
+                </select>
+            </div>
+            <div>
+                <button type="reset">Reset</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>
