@@ -15,7 +15,7 @@ public class App {
         helloWorld.setMessage("Hello World!");
         helloWorld.getMessage();
 
-        WithFries withFries = new WithFries();
+        WithFries withFries = (WithFries) ctx.getBean(WithFries.class);
         System.out.println(withFries.toString());
         withFries.toggleFlSalted();
         System.out.printf("Just toggled withFries and now they are '%s'.", withFries.toString());

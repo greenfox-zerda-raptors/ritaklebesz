@@ -10,4 +10,9 @@ public class HelloWorldConfig {
     public HelloWorld helloWorld() {
         return new HelloWorld();
     }
+
+    @Bean
+    public WithFries withFries() {
+        return new WithFries();
+    }
 }
