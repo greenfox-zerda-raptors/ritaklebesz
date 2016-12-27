@@ -2,6 +2,7 @@ package com.greenfoxacademy.java.lesson.beans;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 @Configuration
 public class HelloWorldConfig {
@@ -12,7 +13,8 @@ public class HelloWorldConfig {
     }
 
     @Bean
-    public WithFries withFries() {
-        return new WithFries();
+    @Scope("prototype")
+    public WithFries withFries(boolean salted) {  //IntelliJ will complain, but still compile
+        return new WithFries(salted);
     }
 }
