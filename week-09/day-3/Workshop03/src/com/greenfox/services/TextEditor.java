@@ -5,8 +5,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TextEditor {
+    //    //field-based DI
+//    @Autowired
     private SpellChecker spellChecker;
 
+//    //constructor-based DI
+//    @Autowired
+//    public TextEditor(SpellChecker spellChecker) {
+//        this.spellChecker = spellChecker;
+//    }
+
+    //setter-based dependency injection
     @Autowired
     public void setSpellChecker(SpellChecker spellChecker) {
         this.spellChecker = spellChecker;
@@ -18,5 +27,10 @@ public class TextEditor {
 
     public void spellCheck(String tx) {
         spellChecker.checkSpelling(tx);
+    }
+
+    @Override
+    public String toString() {
+        return spellChecker.toString();
     }
 }

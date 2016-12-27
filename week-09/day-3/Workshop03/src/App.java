@@ -6,8 +6,11 @@ public class App {
 
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-        TextEditor textEditor = context.getBean(TextEditor.class);
-        textEditor.spellCheck("Woof");
+//        TextEditor textEditor = context.getBean(TextEditor.class);
+//        textEditor.spellCheck("Woof");
+        TextEditor textEditor2 = context.getBean(TextEditor.class, "Woof");
+        textEditor2.spellCheck("hello");
+        System.out.println(textEditor2.toString());
         context.close();
     }
 }
