@@ -1,7 +1,7 @@
 package com.greenfox.configuration;
 
-import com.greenfox.services.EmailService;
 import com.greenfox.services.MessageService;
+import com.greenfox.services.TwitterService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,13 +16,13 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan(value = {"com.greenfox.consumer"})
 public class DIConfiguration {
 
-//    @Bean
-//    public MessageService getMessageService() {
-//        return new TwitterService();
-//    }
-
     @Bean
     public MessageService getMessageService() {
-        return new EmailService();
+        return new TwitterService();
     }
+
+//    @Bean
+//    public MessageService getMessageService() {
+//        return new EmailService();
+//    }
 }
