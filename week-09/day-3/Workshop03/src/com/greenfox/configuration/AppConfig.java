@@ -1,7 +1,6 @@
 package com.greenfox.configuration;
 
 import com.greenfox.services.SpellChecker;
-import com.greenfox.services.TextEditor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,11 +14,6 @@ public class AppConfig {
 //    public SpellChecker getSpellChecker() {
 //        return new SpellChecker();
 //    }
-
-    @Bean
-    TextEditor textEditor() {
-        return new TextEditor();
-    }
 
     @Bean
     @Scope("prototype")
