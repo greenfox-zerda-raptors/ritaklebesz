@@ -10,6 +10,7 @@ public class SpellChecker {
 
     public SpellChecker(String textWord) {
         this.textWord = textWord;
+        System.out.println("Inside the new SpellChecker constructor.");
     }
 
     public void checkSpelling(String tx) {
