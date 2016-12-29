@@ -35,10 +35,18 @@ public class Workshop04Application {
             }
             log.info("");
 
-            log.info("Subjects that students enrolled to:");
+            log.info("Student and their grades in Demo with custom method:");
             log.info("-------------------------------");
-            for (Subject subject : gradeRepository.findAllSubjects()) {
-                log.info(subject.toString());
+            Subject subject = new Subject("Demo");
+            for (Grade grade : gradeRepository.findBySubjectName(subject)) {
+                log.info(grade.toString());
+            }
+            log.info("");
+
+            log.info("Classes taken:");
+            log.info("-------------------------------");
+            for (Subject subject2 : gradeRepository.findAllSubjects()) {
+                log.info(subject2.toString());
             }
             log.info("");
         };
