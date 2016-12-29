@@ -15,4 +15,7 @@ public interface GradeRepository extends CrudRepository<Grade, Long> {
 
     @Query("SELECT DISTINCT grade.classCode FROM Grade grade")
     Iterable<Subject> findAllSubjects();
+
+    @Query("SELECT code FROM Subject subject left outer join subject.code grade where grade.classCode is null")
+    Iterable<Subject> findSubjectsNotTaken();
 }

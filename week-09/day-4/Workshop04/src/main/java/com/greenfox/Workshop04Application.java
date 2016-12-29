@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 public class Workshop04Application {
     private static final Logger log = LoggerFactory.getLogger(Workshop04Application.class);
 
+
     public static void main(String[] args) {
         SpringApplication.run(Workshop04Application.class, args);
     }
@@ -46,6 +47,12 @@ public class Workshop04Application {
             log.info("Classes taken:");
             log.info("-------------------------------");
             for (Subject subject2 : gradeRepository.findAllSubjects()) {
+                log.info(subject2.toString());
+            }
+            log.info("");
+            log.info("Classes not taken:");
+            log.info("-------------------------------");
+            for (Subject subject2 : gradeRepository.findSubjectsNotTaken()) {
                 log.info(subject2.toString());
             }
             log.info("");
