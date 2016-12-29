@@ -1,7 +1,6 @@
 package com.greenfox;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,6 +10,9 @@ import java.util.List;
 @Table(name = "orders")
 @Setter
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
 
     @Id
