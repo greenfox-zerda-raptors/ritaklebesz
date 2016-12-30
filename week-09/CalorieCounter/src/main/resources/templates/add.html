@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add or edit a meal</title>
+</head>
+<body>
+<p>Add, re-add or edit a meal</p>
+<form action="add.html" method="post">
+    <div>
+        <label>Date:</label>
+        <input type="date" name="date"/>
+    </div>
+    <div>
+        <label>Type:</label>
+        <select>
+            <option>Breakfast</option>
+            <option>Elevenses</option>
+            <option>Lunch</option>
+            <option>Snack</option>
+            <option>Dinner</option>
+            <option>Midnight Snack</option>
+        </select>
+    </div>
+    <div>
+        <label>Desc:</label>
+        <input type="text" name="description"/>
+    </div>
+    <div>
+        <label>Cals:</label>
+        <input type="number" name="calories"/>
+    </div>
+    <div>
+        <button type="submit">Add/Return</button>
+        <button type="submit">Add/Another</button>
+        <button type="button">Cancel</button>
+        <button type="delete">Delete</button>
+    </div>
+</form>
+</body>
+</html>
