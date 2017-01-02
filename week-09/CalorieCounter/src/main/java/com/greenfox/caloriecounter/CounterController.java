@@ -15,13 +15,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/caloriecounter")
 public class CounterController {
 
-    @Autowired
+
     private MealService mealService;
     @Autowired
     private MealRepository mealRepository;
 
+    @Autowired
+    public CounterController(MealService mealService) {
+        this.mealService = mealService;
+    }
+
     @RequestMapping(value = {"/index", "/"})
-    public String index() {
+    public String index(Model model) {
+        mealService.updateList();
+        model.addAttribute("meals", mealService.getMeals());
         return "index";
     }
 
@@ -33,7 +40,6 @@ public class CounterController {
 
     @PostMapping(value = "/add")
     public String submitNewMeal(@ModelAttribute Meal meal) {
-//        mealService.addMeal(meal);
         mealRepository.save(meal);
         return "redirect:index";
     }

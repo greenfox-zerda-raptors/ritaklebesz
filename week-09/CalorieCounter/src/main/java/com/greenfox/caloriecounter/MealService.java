@@ -1,8 +1,8 @@
 package com.greenfox.caloriecounter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,9 +11,10 @@ import java.util.List;
 @Service
 public class MealService {
     List<Meal> listOfMeals;
+    @Autowired
+    MealRepository mealRepository;
 
     public MealService() {
-        listOfMeals = new ArrayList<>();
     }
 
     public List<Meal> getMeals() {
@@ -25,5 +26,9 @@ public class MealService {
             meal.setId((long) listOfMeals.size());
         }
         listOfMeals.add(meal);
+    }
+
+    public void updateList() {
+        listOfMeals = (List<Meal>) mealRepository.findAll();
     }
 }

@@ -31,8 +31,8 @@
         <input type="number" name="calories" th:field="${meal.calories}"/>
     </div>
     <div>
-        <button type="submit" value="Submit">Add/Return</button>
-        <button type="submit" value="Submit">Add/Another</button>
+        <button type="submit" value="addAndReturn" id="addAndReturn">Add/Return</button>
+        <button type="submit" value="addAndNew" id="addAndNew">Add/Another</button>
         <a th:href="@{/caloriecounter/}">
             <button type="button">Cancel</button>
         </a>

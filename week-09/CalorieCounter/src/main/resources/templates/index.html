@@ -17,11 +17,11 @@
     <th></th>
     </thead>
     <tbody>
-    <tr>
-        <td>2016-12-23</td>
-        <td>Lunch</td>
-        <td>Pasta</td>
-        <td>800</td>
+    <tr th:each="meal:${meals}">
+        <td th:text="${meal.date}">2016-12-23</td>
+        <td th:text="${meal.type}">Lunch</td>
+        <td th:text="${meal.description}">Pasta</td>
+        <td th:text="${meal.calories}">800</td>
         <td>
             <button>Edit</button>
             <button>Delete</button>
