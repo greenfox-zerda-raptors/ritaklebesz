@@ -3,6 +3,7 @@ package com.greenfox.caloriecounter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -17,18 +18,31 @@ public class MealService {
     }
 
     public List<Meal> getAllMeals() {
-        return (List<Meal>) mealRepository.findAll();
+        return (List<Meal>) mealRepository.findAllOrderedByDate();
     }
 
-    public void deleteMeal(Meal meal) {
-        mealRepository.delete(meal);
+    public void deleteMeal(long id) {
+        mealRepository.delete(id);
     }
 
     public void addMeal(Meal meal) {
         mealRepository.save(meal);
     }
 
+    public void updateMeal(long id, LocalDate newDate, String newType, String newDescription, int newCalories) {
+        Meal meal = mealRepository.findOne(id);
+        meal.setDate(newDate);
+        meal.setType(newType);
+        meal.setDescription(newDescription);
+        meal.setCalories(newCalories);
+        mealRepository.save(meal);
+    }
+
     public long getMealCount() {
         return mealRepository.count();
+    }
+
+    public int getSumOfAllCalories() {
+        return mealRepository.getSumOfCalories();
     }
 }

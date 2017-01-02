@@ -23,13 +23,17 @@
         <td th:text="${meal.description}">Pasta</td>
         <td th:text="${meal.calories}">800</td>
         <td>
-            <button>Edit</button>
-            <button>Delete</button>
+            <a th:href="@{/caloriecounter/edit}">
+                <button th:name="edit" th:value="${meal.id}">Edit</button>
+            </a>
+            <form name="delete" th:action="@{/caloriecounter/delete}" method="post">
+                <button th:name="delete" th:value="${meal.id}">Delete</button>
+            </form>
         </td>
     </tr>
     </tbody>
 </table>
-<p>Total Calories: 800</p>
+<p th:text="'Total Calories: ' + ${calories}">Total Calories: 800</p>
 <p th:text="'Number of meals: ' + ${mealCount}">Number of meals: 1</p>
 <table>
     <thead>
