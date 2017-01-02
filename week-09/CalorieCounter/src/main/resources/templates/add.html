@@ -1,40 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Add or edit a meal</title>
 </head>
 <body>
 <p>Add, re-add or edit a meal</p>
-<form action="add.html" method="post">
+<form action="#" th:action="@{/caloriecounter/add}" th:object="${meal}" method="post">
     <div>
         <label>Date:</label>
-        <input type="date" name="date"/>
+        <input type="date" name="date" th:field="${meal.date}"/>
     </div>
     <div>
         <label>Type:</label>
-        <select>
-            <option>Breakfast</option>
-            <option>Elevenses</option>
-            <option>Lunch</option>
-            <option>Snack</option>
-            <option>Dinner</option>
-            <option>Midnight Snack</option>
+        <select th:field="${meal.type}">
+            <option value="Breakfast">Breakfast</option>
+            <option value="Elevenses">Elevenses</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Snack">Snack</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Midnight Snack">Midnight Snack</option>
         </select>
     </div>
     <div>
         <label>Desc:</label>
-        <input type="text" name="description"/>
+        <input type="text" name="description" th:field="${meal.description}"/>
     </div>
     <div>
         <label>Cals:</label>
-        <input type="number" name="calories"/>
+        <input type="number" name="calories" th:field="${meal.calories}"/>
     </div>
     <div>
-        <button type="submit">Add/Return</button>
-        <button type="submit">Add/Another</button>
-        <button type="button">Cancel</button>
-        <button type="delete">Delete</button>
+        <button type="submit" value="Submit">Add/Return</button>
+        <button type="submit" value="Submit">Add/Another</button>
+        <a th:href="@{/caloriecounter/}">
+            <button type="button">Cancel</button>
+        </a>
+        <button type="reset" value="Reset">Reset</button>
     </div>
 </form>
 </body>
