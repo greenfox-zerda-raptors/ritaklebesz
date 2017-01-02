@@ -23,9 +23,9 @@
         <td th:text="${meal.description}">Pasta</td>
         <td th:text="${meal.calories}">800</td>
         <td>
-            <a th:href="@{/caloriecounter/edit}">
-                <button th:name="edit" th:value="${meal.id}">Edit</button>
-            </a>
+            <form name="edit" th:action="@{/caloriecounter/toEdit}" method="post">
+                <button th:name="toEdit" th:value="${meal.id}">Edit</button>
+            </form>
             <form name="delete" th:action="@{/caloriecounter/delete}" method="post">
                 <button th:name="delete" th:value="${meal.id}">Delete</button>
             </form>

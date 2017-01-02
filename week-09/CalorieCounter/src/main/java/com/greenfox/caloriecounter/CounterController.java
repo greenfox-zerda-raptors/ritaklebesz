@@ -45,5 +45,28 @@ public class CounterController {
         mealService.deleteMeal(id);
         return "redirect:index";
     }
+
+    @RequestMapping(value = "/toEdit", method = RequestMethod.POST)
+    public String goToEdit(@RequestParam("toEdit") long id) {
+        String path = "redirect:edit/" + id;
+        return path;
+    }
+
+    @GetMapping(value = "/edit/{id}")
+    public String editMeal(Model model, @PathVariable String id) {
+        Long idNumber = Long.parseLong(id.trim());
+        model.addAttribute("meal", mealService.getMeal(idNumber));
+        return "edit";
+    }
+
+    @PostMapping(value = "/edit/{id}")
+    public String editMeal(@PathVariable int id,
+                           @RequestParam("date") String date,
+                           @RequestParam("type") String type,
+                           @RequestParam("description") String description,
+                           @RequestParam("calories") int calories) {
+        mealService.updateMeal(id, date, type, description, calories);
+        return "redirect:/caloriecounter/index";
+    }
 }
 

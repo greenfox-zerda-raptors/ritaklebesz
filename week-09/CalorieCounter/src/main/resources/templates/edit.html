@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add or edit a meal</title>
+</head>
+<body>
+<p>Add, re-add or edit a meal</p>
+<form action="#" th:action="@{/caloriecounter/edit/{id}(id=${meal.id})}" method="post">
+    <div>
+        <label>Date:</label>
+        <input type="date" name="date" th:value="${meal.date}"/>
+    </div>
+    <div>
+        <label>Type:</label>
+        <select name="type" th:value="${meal.type}">
+            <option value="Breakfast">Breakfast</option>
+            <option value="Elevenses">Elevenses</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Snack">Snack</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Midnight Snack">Midnight Snack</option>
+        </select>
+    </div>
+    <div>
+        <label>Desc:</label>
+        <input type="text" name="description" th:value="${meal.description}"/>
+    </div>
+    <div>
+        <label>Cals:</label>
+        <input type="number" name="calories" th:value="${meal.calories}"/>
+    </div>
+    <div>
+        <button type="submit" value="addAndReturn" id="addAndReturn">Add/Return</button>
+        <a th:href="@{/caloriecounter/}">
+            <button type="button">Cancel</button>
+        </a>
+    </div>
+</form>
+</body>
+</html>

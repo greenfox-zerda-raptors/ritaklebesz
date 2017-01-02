@@ -29,13 +29,17 @@ public class MealService {
         mealRepository.save(meal);
     }
 
-    public void updateMeal(long id, LocalDate newDate, String newType, String newDescription, int newCalories) {
+    public void updateMeal(long id, String newDate, String newType, String newDescription, int newCalories) {
         Meal meal = mealRepository.findOne(id);
-        meal.setDate(newDate);
+        meal.setDate(LocalDate.parse(newDate));
         meal.setType(newType);
         meal.setDescription(newDescription);
         meal.setCalories(newCalories);
         mealRepository.save(meal);
+    }
+
+    public Meal getMeal(long id) {
+        return mealRepository.findOne(id);
     }
 
     public long getMealCount() {
