@@ -17,18 +17,15 @@ public class CounterController {
 
 
     private MealService mealService;
-    @Autowired
-    private MealRepository mealRepository;
 
     @Autowired
     public CounterController(MealService mealService) {
         this.mealService = mealService;
     }
 
-    @RequestMapping(value = {"/index", "/"})
+    @RequestMapping(value = {"/index", "/", ""})
     public String index(Model model) {
-        mealService.updateList();
-        model.addAttribute("meals", mealService.getMeals());
+        model.addAttribute("meals", mealService.getAllMeals());
         model.addAttribute("mealCount", mealService.getMealCount());
         return "index";
     }
@@ -41,7 +38,7 @@ public class CounterController {
 
     @PostMapping(value = "/add")
     public String submitNewMeal(@ModelAttribute Meal meal) {
-        mealRepository.save(meal);
+        mealService.addMeal(meal);
         return "redirect:index";
     }
 }

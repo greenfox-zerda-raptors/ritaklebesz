@@ -27,8 +27,4 @@ public class Meal {
     String type;
     String description;
     int calories;
-
-    public LocalDate convertToDate(String string) {
-        return LocalDate.parse(string);
-    }
 }

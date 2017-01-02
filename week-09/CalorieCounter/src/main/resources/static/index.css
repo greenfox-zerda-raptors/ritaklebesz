@@ -125,3 +125,7 @@ p {
     color: darkcyan;
     font-family: 'Aref Ruqaa', serif;
 }
+
+a {
+    text-decoration: none;
+}

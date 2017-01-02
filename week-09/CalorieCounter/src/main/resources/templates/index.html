@@ -38,7 +38,9 @@
     <th>TotalCalories</th>
     </thead>
 </table>
-<button class="newButton">Add new meal</button>
+<a th:href="@{/caloriecounter/add}">
+    <button class="newButton">Add new meal</button>
+</a>
 <div class="navigation">
     <div class="sub-container">
         <a href="#" class="nav">&lt;&lt;</a>
@@ -62,7 +64,7 @@
             </div>
             <div>
                 <label>End date:</label>
-                <input type="date" name="startdate"/>
+                <input type="date" name="enddate"/>
             </div>
             <div>
                 <label>Meal type to list:</label>

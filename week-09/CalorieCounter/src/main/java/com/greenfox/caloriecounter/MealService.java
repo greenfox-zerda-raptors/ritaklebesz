@@ -10,29 +10,25 @@ import java.util.List;
  */
 @Service
 public class MealService {
-    List<Meal> listOfMeals;
     @Autowired
     MealRepository mealRepository;
 
     public MealService() {
     }
 
-    public List<Meal> getMeals() {
-        return listOfMeals;
+    public List<Meal> getAllMeals() {
+        return (List<Meal>) mealRepository.findAll();
+    }
+
+    public void deleteMeal(Meal meal) {
+        mealRepository.delete(meal);
     }
 
     public void addMeal(Meal meal) {
-        if (meal.getId() == 0) {
-            meal.setId((long) listOfMeals.size());
-        }
-        listOfMeals.add(meal);
+        mealRepository.save(meal);
     }
 
-    public void updateList() {
-        listOfMeals = (List<Meal>) mealRepository.findAll();
-    }
-
-    public int getMealCount() {
-        return listOfMeals.size();
+    public long getMealCount() {
+        return mealRepository.count();
     }
 }
