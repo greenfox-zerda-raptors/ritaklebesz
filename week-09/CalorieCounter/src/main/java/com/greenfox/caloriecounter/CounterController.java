@@ -29,6 +29,7 @@ public class CounterController {
     public String index(Model model) {
         mealService.updateList();
         model.addAttribute("meals", mealService.getMeals());
+        model.addAttribute("mealCount", mealService.getMealCount());
         return "index";
     }
 

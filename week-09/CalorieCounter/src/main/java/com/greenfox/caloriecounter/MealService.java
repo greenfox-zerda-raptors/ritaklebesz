@@ -31,4 +31,8 @@ public class MealService {
     public void updateList() {
         listOfMeals = (List<Meal>) mealRepository.findAll();
     }
+
+    public int getMealCount() {
+        return listOfMeals.size();
+    }
 }
