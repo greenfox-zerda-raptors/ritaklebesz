@@ -1,10 +1,11 @@
 package com.greenfox.rita.reddit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * Created by Rita on 2017-01-04.
@@ -19,8 +20,8 @@ public class PostService {
         this.repository = repository;
     }
 
-    public List<Post> getAllPosts() {
-        return (List<Post>) repository.findAll();
+    public Page<Post> getAllPosts(int page, int limit) {
+        return repository.findAllOrderedByScore(new PageRequest(page, limit));
     }
 
     public void savePost(Post post) {

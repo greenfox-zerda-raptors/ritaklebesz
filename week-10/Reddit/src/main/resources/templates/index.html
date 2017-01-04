@@ -16,7 +16,7 @@
     </thead>
     <tbody>
     <tr th:each="post:${posts}">
-        <td th:text="${post.dateTime}">2016-12-23</td>
+        <td th:text="${post.getFormattedTimestamp()}">2016-12-23</td>
         <td th:text="${post.score}">0</td>
         <td>
             <a th:href="@{'/posts/' +${post.id} + '/upvote'}">+</a>

@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Rita on 2017-01-04.
@@ -31,5 +32,9 @@ public class Post {
 
     public void decreaseScore() {
         score--;
+    }
+
+    public String getFormattedTimestamp() {
+        return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 }

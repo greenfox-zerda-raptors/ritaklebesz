@@ -23,7 +23,7 @@ public class PostController {
 
     @RequestMapping(value = "/")
     public String index(Model model) {
-        model.addAttribute("posts", service.getAllPosts());
+        model.addAttribute("posts", service.getAllPosts(0, 25));
         return "index";
     }
 
