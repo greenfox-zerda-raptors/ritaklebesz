@@ -1,10 +1,11 @@
 package com.greenfox.caloriecounter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  * Created by Rita on 2017-01-02.
@@ -17,8 +18,8 @@ public class MealService {
     public MealService() {
     }
 
-    public List<Meal> getAllMeals() {
-        return (List<Meal>) mealRepository.findAllOrderedByDate();
+    public Page<Meal> getAllMeals(Integer page, Integer limit) {
+        return mealRepository.findAllOrderedByDate(new PageRequest(page, limit));
     }
 
     public void deleteMeal(long id) {

@@ -1,5 +1,7 @@
 package com.greenfox.caloriecounter;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -12,5 +14,5 @@ public interface MealRepository extends CrudRepository<Meal, Long> {
     int getSumOfCalories();
 
     @Query("SELECT meal from Meal meal order by meal.date")
-    Iterable<Meal> findAllOrderedByDate();
+    Page<Meal> findAllOrderedByDate(Pageable pageable);
 }

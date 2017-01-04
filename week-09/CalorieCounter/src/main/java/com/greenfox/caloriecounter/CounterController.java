@@ -21,8 +21,13 @@ public class CounterController {
     }
 
     @RequestMapping(value = {"/index", "/", ""})
-    public String index(Model model) {
-        model.addAttribute("meals", mealService.getAllMeals());
+    public String defaultIndex() {
+        return "redirect:/caloriecounter/meals?page=0&limit=25";
+    }
+
+    @RequestMapping(value = "/meals")
+    public String index(Model model, @RequestParam(name = "page") String page, @RequestParam(name = "limit") String limit) {
+        model.addAttribute("meals", mealService.getAllMeals(Integer.valueOf(page), Integer.valueOf(limit)));
         model.addAttribute("mealCount", mealService.getMealCount());
         model.addAttribute("calories", mealService.getSumOfAllCalories());
         return "index";
