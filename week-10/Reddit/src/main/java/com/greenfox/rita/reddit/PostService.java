@@ -3,6 +3,7 @@ package com.greenfox.rita.reddit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  */
 @Service
 public class PostService {
-    
+
     PostRepository repository;
 
     @Autowired
@@ -24,6 +25,7 @@ public class PostService {
 
     public void savePost(Post post) {
         post.setScore(0);
+        post.setDateTime(LocalDateTime.now());
         repository.save(post);
     }
 

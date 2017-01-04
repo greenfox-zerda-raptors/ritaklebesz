@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * Created by Rita on 2017-01-04.
@@ -22,11 +23,7 @@ public class Post {
     private long id;
     private String content;
     private int score;
-
-    public Post(String content) {
-        this.content = content;
-        score = 0;
-    }
+    private LocalDateTime dateTime;
 
     public void increaseScore() {
         score++;

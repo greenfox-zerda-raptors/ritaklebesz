@@ -9,12 +9,14 @@
 <h1>Posts</h1>
 <table>
     <thead>
+    <th>Date and time</th>
     <th>Score</th>
     <th>Actions</th>
     <th>Content</th>
     </thead>
     <tbody>
     <tr th:each="post:${posts}">
+        <td th:text="${post.dateTime}">2016-12-23</td>
         <td th:text="${post.score}">0</td>
         <td>
             <a th:href="@{'/posts/' +${post.id} + '/upvote'}">+</a>
