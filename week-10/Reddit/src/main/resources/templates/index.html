@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Reddit App</title>
+</head>
+<body>
+<a th:href="@{/posts/add}" href="http://localhost:8080/posts/add">Add new post</a>
+<h1>Posts</h1>
+<table>
+    <thead>
+    <th>Score</th>
+    <th>Actions</th>
+    <th>Content</th>
+    </thead>
+    <tbody>
+    <tr th:each="post:${posts}">
+        <td th:text="${post.score}">0</td>
+        <td><a href="#">+</a><a href="#">-</a></td>
+        <td th:text="${post.content}">first</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
