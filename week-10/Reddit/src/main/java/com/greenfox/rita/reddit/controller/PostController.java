@@ -40,9 +40,17 @@ public class PostController {
     }
 
     @RequestMapping(value = "/{id}/upvote")
-    public String goToUpvote(@PathVariable("id") String id) {
+    public String upvote(@PathVariable("id") String id) {
         Post post = repository.findOne(Long.parseLong(id));
         post.increaseScore();
+        repository.save(post);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/{id}/downvote")
+    public String downvote(@PathVariable("id") String id) {
+        Post post = repository.findOne(Long.parseLong(id));
+        post.decreaseScore();
         repository.save(post);
         return "redirect:/";
     }
