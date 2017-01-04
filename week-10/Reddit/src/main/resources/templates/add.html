@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Reddit App</title>
 </head>
 <body>
 You can add new post here.
+<form action="#" th:action="@{/posts/add}" th:object="${post}" method="post">
+    <div>
+        <label>Content:</label>
+        <input type="text" name="content" th:field="${post.content}"/>
+    </div>
+    <div>
+        <button type="submit" value="addAndReturn" id="addAndReturn">Submit</button>
+        <a th:href="@{/caloriecounter/}">
+            <button type="button">Cancel</button>
+        </a>
+        <button type="reset" value="Reset">Reset</button>
+    </div>
+</form>
 </body>
 </html>
