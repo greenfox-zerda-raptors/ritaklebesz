@@ -27,4 +27,12 @@ public class Post {
         this.content = content;
         score = 0;
     }
+
+    public void increaseScore() {
+        score++;
+    }
+
+    public void decreaseScore() {
+        score--;
+    }
 }

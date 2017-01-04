@@ -5,10 +5,7 @@ import com.greenfox.rita.reddit.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by Rita on 2017-01-04.
@@ -38,6 +35,14 @@ public class PostController {
     @PostMapping(value = "/add")
     public String submitNewPost(@ModelAttribute Post post) {
         post.setScore(0);
+        repository.save(post);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/{id}/upvote")
+    public String goToUpvote(@PathVariable("id") String id) {
+        Post post = repository.findOne(Long.parseLong(id));
+        post.increaseScore();
         repository.save(post);
         return "redirect:/";
     }

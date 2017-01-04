@@ -16,7 +16,9 @@
     <tbody>
     <tr th:each="post:${posts}">
         <td th:text="${post.score}">0</td>
-        <td><a href="#">+</a><a href="#">-</a></td>
+        <td>
+            <a th:href="@{'/posts/' +${post.id} + '/upvote'}">+</a>
+            <a href="#">-</a></td>
         <td th:text="${post.content}">first</td>
     </tr>
     </tbody>
