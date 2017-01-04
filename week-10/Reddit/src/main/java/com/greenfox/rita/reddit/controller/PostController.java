@@ -1,7 +1,7 @@
 package com.greenfox.rita.reddit.controller;
 
 import com.greenfox.rita.reddit.Post;
-import com.greenfox.rita.reddit.PostRepository;
+import com.greenfox.rita.reddit.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,16 +13,17 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping(value = "/posts")
 public class PostController {
-    PostRepository repository;
+
+    PostService service;
 
     @Autowired
-    public PostController(PostRepository repository) {
-        this.repository = repository;
+    public PostController(PostService service) {
+        this.service = service;
     }
 
     @RequestMapping(value = "/")
     public String index(Model model) {
-        model.addAttribute("posts", repository.findAll());
+        model.addAttribute("posts", service.getAllPosts());
         return "index";
     }
 
@@ -34,24 +35,19 @@ public class PostController {
 
     @PostMapping(value = "/add")
     public String submitNewPost(@ModelAttribute Post post) {
-        post.setScore(0);
-        repository.save(post);
+        service.savePost(post);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/{id}/upvote")
     public String upvote(@PathVariable("id") String id) {
-        Post post = repository.findOne(Long.parseLong(id));
-        post.increaseScore();
-        repository.save(post);
+        service.upvotePost(id);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/{id}/downvote")
     public String downvote(@PathVariable("id") String id) {
-        Post post = repository.findOne(Long.parseLong(id));
-        post.decreaseScore();
-        repository.save(post);
+        service.downvotePost(id);
         return "redirect:/";
     }
 }
