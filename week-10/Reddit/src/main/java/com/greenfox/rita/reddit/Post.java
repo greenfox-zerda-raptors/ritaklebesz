@@ -22,6 +22,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    private String user;
     private String content;
     private int score;
     private LocalDateTime dateTime;

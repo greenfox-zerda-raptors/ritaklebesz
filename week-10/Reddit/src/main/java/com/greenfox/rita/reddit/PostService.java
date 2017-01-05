@@ -3,6 +3,7 @@ package com.greenfox.rita.reddit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -26,6 +27,7 @@ public class PostService {
 
     public void savePost(Post post) {
         post.setScore(0);
+        post.setUser(SecurityContextHolder.getContext().getAuthentication().getName());
         post.setDateTime(LocalDateTime.now());
         repository.save(post);
     }

@@ -5,11 +5,13 @@
     <title>Reddit App</title>
 </head>
 <body>
+<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
 <a th:href="@{/posts/add}" href="http://localhost:8080/posts/add">Add new post</a>
 <h1>Posts</h1>
 <table>
     <thead>
     <th>Date and time</th>
+    <th>User</th>
     <th>Score</th>
     <th>Actions</th>
     <th>Content</th>
@@ -17,6 +19,7 @@
     <tbody>
     <tr th:each="post:${posts}">
         <td th:text="${post.getFormattedTimestamp()}">2016-12-23</td>
+        <td th:text="${post.user}">user name</td>
         <td th:text="${post.score}">0</td>
         <td>
             <a th:href="@{'/posts/' +${post.id} + '/upvote'}">+</a>
@@ -33,5 +36,8 @@
        th:rel="${posts.nextPageable()}">next&gt;</a>
     <a href="#" th:href="@{'/posts/?page=' + ${posts.getTotalPages()-1} + '&amp;count=10' }">last&gt;&gt;</a>
 </div>
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 </body>
 </html>
