@@ -20,7 +20,7 @@ public class PostService {
         this.repository = repository;
     }
 
-    public Page<Post> getAllPosts(int page, int limit) {
+    public Page<Post> getRequestedPage(int page, int limit) {
         return repository.findAllOrderedByScore(new PageRequest(page, limit));
     }
 

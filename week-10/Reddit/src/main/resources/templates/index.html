@@ -25,5 +25,13 @@
     </tr>
     </tbody>
 </table>
+<div>
+    <a href="#" th:href="@{'/posts/?page=0&amp;count=10'}">&lt;&lt;first</a>
+    <a th:if="${posts.hasPrevious()}" href="#" th:href="@{'/posts/?page=' + ${posts.getNumber()-1} + '&amp;count=10' }"
+       th:rel="${posts.previousPageable()}">&lt;previous</a>
+    <a th:if="${posts.hasNext()}" href="#" th:href="@{'/posts/?page=' + ${posts.getNumber()+1} + '&amp;count=10' }"
+       th:rel="${posts.nextPageable()}">next&gt;</a>
+    <a href="#" th:href="@{'/posts/?page=' + ${posts.getTotalPages()-1} + '&amp;count=10' }">last&gt;&gt;</a>
+</div>
 </body>
 </html>
