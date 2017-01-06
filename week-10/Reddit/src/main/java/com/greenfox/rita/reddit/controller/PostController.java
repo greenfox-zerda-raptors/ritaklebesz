@@ -21,12 +21,6 @@ public class PostController {
         this.service = service;
     }
 
-//    @RequestMapping(value = "/")
-//    public String index(Model model) {
-//        model.addAttribute("posts", service.getRequestedPage(0, 25));
-//        return "index";
-//    }
-
     @RequestMapping(value = "/")
     public String index(Model model, @RequestParam(name = "page", defaultValue = "0") Integer page, @RequestParam(name = "count", defaultValue = "10") Integer limit) {
         model.addAttribute("posts", service.getRequestedPage(page, limit));
