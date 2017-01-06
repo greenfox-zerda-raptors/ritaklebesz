@@ -22,7 +22,9 @@ public class PostController {
     }
 
     @RequestMapping(value = "/")
-    public String index(Model model, @RequestParam(name = "page", defaultValue = "0") Integer page, @RequestParam(name = "count", defaultValue = "10") Integer limit) {
+    public String index(Model model,
+                        @RequestParam(name = "page", defaultValue = "0") Integer page,
+                        @RequestParam(name = "count", defaultValue = "10") Integer limit) {
         model.addAttribute("posts", service.getRequestedPage(page, limit));
         return "index";
     }

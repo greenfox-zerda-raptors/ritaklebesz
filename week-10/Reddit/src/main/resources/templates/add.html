@@ -16,7 +16,7 @@
     <form action="#" th:action="@{/posts/add}" th:object="${post}" method="post" class="form-signin">
         <div>
             <label>Content:</label>
-            <input type="text" name="content" th:field="${post.content}" class="form-control"/>
+            <input type="text" name="content" th:field="${post.content}" class="form-control" th:required="required"/>
             <button type="submit" value="addAndReturn" id="addAndReturn" class="btn btn-primary">Submit</button>
             <a th:href="@{/posts/}" class="btn btn-default">Cancel</a>
             <button type="reset" value="Reset" class="btn btn-danger">Reset</button>
