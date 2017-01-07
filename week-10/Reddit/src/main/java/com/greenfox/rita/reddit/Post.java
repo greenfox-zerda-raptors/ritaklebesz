@@ -27,12 +27,8 @@ public class Post {
     private int score;
     private LocalDateTime dateTime;
 
-    public void increaseScore() {
-        score++;
-    }
-
-    public void decreaseScore() {
-        score--;
+    public void changeScore(int changeInScore) {
+        score += changeInScore;
     }
 
     public String getFormattedTimestamp() {

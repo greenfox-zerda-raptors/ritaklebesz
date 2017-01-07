@@ -42,14 +42,14 @@ public class PostController {
     }
 
     @RequestMapping(value = "/{id}/upvote")
-    public String upvote(@PathVariable("id") String id) {
-        service.upvotePost(id);
+    public String upvote(@PathVariable("id") Long id) {
+        service.vote(id, 1);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/{id}/downvote")
-    public String downvote(@PathVariable("id") String id) {
-        service.downvotePost(id);
+    public String downvote(@PathVariable("id") Long id) {
+        service.vote(id, -1);
         return "redirect:/";
     }
 }

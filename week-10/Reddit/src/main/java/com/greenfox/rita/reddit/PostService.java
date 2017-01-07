@@ -32,15 +32,9 @@ public class PostService {
         repository.save(post);
     }
 
-    public void upvotePost(String id) {
-        Post post = repository.findOne(Long.parseLong(id));
-        post.increaseScore();
-        repository.save(post);
-    }
-
-    public void downvotePost(String id) {
-        Post post = repository.findOne(Long.parseLong(id));
-        post.decreaseScore();
+    public void vote(Long id, int changeInScore) {
+        Post post = repository.findOne(id);
+        post.changeScore(changeInScore);
         repository.save(post);
     }
 
