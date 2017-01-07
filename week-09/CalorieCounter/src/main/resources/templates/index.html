@@ -47,19 +47,25 @@
 </a>
 <div class="navigation">
     <div class="sub-container">
-        <a href="#" class="nav">&lt;&lt;</a>
-        <a href="#" class="nav">&lt;</a>
-        <a href="#" class="nav">&gt;</a>
-        <a href="#" class="nav">&gt;&gt;</a>
+        <a th:if="${not meals.isFirst()}" href="#"
+           th:href="@{'/caloriecounter/?page=0&amp;count=' +  ${meals.getSize()}}">&lt;&lt;first</a>
+        <a th:if="${meals.hasPrevious()}" href="#"
+           th:href="@{'/caloriecounter/?page=' + ${meals.getNumber()-1} + '&amp;count=' +  ${meals.getSize()}}"
+           th:rel="${meals.previousPageable()}">&lt;previous</a>
+        <a th:if="${meals.hasNext()}" href="#"
+           th:href="@{'/caloriecounter/?page=' + ${meals.getNumber()+1} + '&amp;count=' +  ${meals.getSize()}}"
+           th:rel="${meals.nextPageable()}">next&gt;</a>
+        <a th:if="${not meals.isLast()}" href="#"
+           th:href="@{'/caloriecounter/?page=' + ${meals.getTotalPages()-1} + '&amp;count=' +  ${meals.getSize()}}">last&gt;&gt;</a>
     </div>
     <div class="form-container">
         <form>
             <div>
                 <label>Number of items to list:</label>
                 <select>
-                    <option>25</option>
+                    <option>15</option>
+                    <option>30</option>
                     <option>50</option>
-                    <option>100</option>
                 </select>
             </div>
             <div>
