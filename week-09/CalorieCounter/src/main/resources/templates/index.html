@@ -55,32 +55,26 @@
            th:href="@{'/caloriecounter/?page=' + ${meals.getTotalPages()-1} + '&amp;limit=' +  ${meals.getSize()}}">last&gt;&gt;</a>
     </div>
     <div class="form-container">
-        <form th:action="@{/caloriecounter/index}" method="post">
+        <form th:action="@{/caloriecounter/index}" method="post" th:object="${queryRequest}">
             <div>
                 <label>Number of items to list:</label>
-                <select name="limit" onchange="this.form.submit()">
-                    <option>Select</option>
+                <select name="limit" th:field="${queryRequest.limit}">
                     <option value="15">15</option>
                     <option value="30">30</option>
                     <option value="50">50</option>
                 </select>
             </div>
-        </form>
-        <form th:action="@{/caloriecounter/index}" method="post">
             <div>
                 <label>Start date:</label>
-                <input type="date" name="startdate" onchange="this.form.submit()"/>
+                <input type="date" name="startdate" th:field="${queryRequest.startdate}"/>
             </div>
             <div>
                 <label>End date:</label>
-                <input type="date" name="enddate" onchange="this.form.submit()"/>
+                <input type="date" name="enddate" th:field="${queryRequest.enddate}"/>
             </div>
-        </form>
-        <form th:action="@{/caloriecounter/index}" method="post">
             <div>
                 <label>Meal type to list:</label>
-                <select name="type" id="types" onchange="this.form.submit()">
-                    <option>Select</option>
+                <select name="type" id="types" th:field="${queryRequest.type}">
                     <option value="All">All</option>
                     <option value="Breakfast">Breakfast</option>
                     <option value="Elevenses">Elevenses</option>
@@ -90,6 +84,7 @@
                     <option value="Midnight Snack">Midnight Snack</option>
                 </select>
             </div>
+            <button type="submit">Filter meals</button>
         </form>
     </div>
     <div>

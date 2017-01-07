@@ -20,7 +20,7 @@ public class CounterController {
         this.mealService = mealService;
     }
 
-    @RequestMapping(value = {"/index", "/", ""})
+    @GetMapping(value = {"/index", "/", ""})
     public String index(Model model,
                         @RequestParam(name = "page", defaultValue = "0") Integer page,
                         @RequestParam(name = "limit", defaultValue = "15") Integer limit,
@@ -30,7 +30,13 @@ public class CounterController {
         model.addAttribute("meals", mealService.getRequestedMeals(type, startdate, enddate, page, limit));
         model.addAttribute("mealCount", mealService.getMealCount());
         model.addAttribute("calories", mealService.getSumOfAllCalories());
+        model.addAttribute("queryRequest", new QueryRequest());
         return "index";
+    }
+
+    @PostMapping(value = "/index")
+    public String index(@ModelAttribute QueryRequest queryRequest) {
+        return queryRequest.getPath();
     }
 
     @GetMapping(value = "/add")
