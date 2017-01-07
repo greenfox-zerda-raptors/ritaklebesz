@@ -22,6 +22,13 @@ public class MealService {
         return mealRepository.findAllOrderedByDate(new PageRequest(page, limit));
     }
 
+    public Page<Meal> getRequestedMeals(String type, String startdate, String enddate, int page, int limit) {
+        if (type.equals("All")) {
+            return mealRepository.findAllByDateBetweenOrderByDateDesc(LocalDate.parse(startdate), LocalDate.parse(enddate), new PageRequest(page, limit));
+        }
+        return mealRepository.findByTypeAndDateBetweenOrderByDateDesc(type, LocalDate.parse(startdate), LocalDate.parse(enddate), new PageRequest(page, limit));
+    }
+
     public void deleteMeal(long id) {
         mealRepository.delete(id);
     }

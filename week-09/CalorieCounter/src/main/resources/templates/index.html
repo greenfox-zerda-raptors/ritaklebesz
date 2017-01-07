@@ -44,49 +44,56 @@
 <div class="navigation">
     <div class="sub-container">
         <a th:if="${not meals.isFirst()}" href="#"
-           th:href="@{'/caloriecounter/?page=0&amp;count=' +  ${meals.getSize()}}">&lt;&lt;first</a>
+           th:href="@{'/caloriecounter/?page=0&amp;limit=' +  ${meals.getSize()}}">&lt;&lt;first</a>
         <a th:if="${meals.hasPrevious()}" href="#"
-           th:href="@{'/caloriecounter/?page=' + ${meals.getNumber()-1} + '&amp;count=' +  ${meals.getSize()}}"
+           th:href="@{'/caloriecounter/?page=' + ${meals.getNumber()-1} + '&amp;limit=' +  ${meals.getSize()}}"
            th:rel="${meals.previousPageable()}">&lt;previous</a>
         <a th:if="${meals.hasNext()}" href="#"
-           th:href="@{'/caloriecounter/?page=' + ${meals.getNumber()+1} + '&amp;count=' +  ${meals.getSize()}}"
+           th:href="@{'/caloriecounter/?page=' + ${meals.getNumber()+1} + '&amp;limit=' +  ${meals.getSize()}}"
            th:rel="${meals.nextPageable()}">next&gt;</a>
         <a th:if="${not meals.isLast()}" href="#"
-           th:href="@{'/caloriecounter/?page=' + ${meals.getTotalPages()-1} + '&amp;count=' +  ${meals.getSize()}}">last&gt;&gt;</a>
+           th:href="@{'/caloriecounter/?page=' + ${meals.getTotalPages()-1} + '&amp;limit=' +  ${meals.getSize()}}">last&gt;&gt;</a>
     </div>
     <div class="form-container">
-        <form>
+        <form th:action="@{/caloriecounter/index}" method="post">
             <div>
                 <label>Number of items to list:</label>
-                <select>
-                    <option>15</option>
-                    <option>30</option>
-                    <option>50</option>
+                <select name="limit" onchange="this.form.submit()">
+                    <option>Select</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="50">50</option>
                 </select>
             </div>
+        </form>
+        <form th:action="@{/caloriecounter/index}" method="post">
             <div>
                 <label>Start date:</label>
-                <input type="date" name="startdate"/>
+                <input type="date" name="startdate" onchange="this.form.submit()"/>
             </div>
             <div>
                 <label>End date:</label>
-                <input type="date" name="enddate"/>
-            </div>
-            <div>
-                <label>Meal type to list:</label>
-                <select id="types">
-                    <option>Breakfast</option>
-                    <option>Elevenses</option>
-                    <option>Lunch</option>
-                    <option>Snack</option>
-                    <option>Dinner</option>
-                    <option>Midnight Snack</option>
-                </select>
-            </div>
-            <div>
-                <button type="reset">Reset</button>
+                <input type="date" name="enddate" onchange="this.form.submit()"/>
             </div>
         </form>
+        <form th:action="@{/caloriecounter/index}" method="post">
+            <div>
+                <label>Meal type to list:</label>
+                <select name="type" id="types" onchange="this.form.submit()">
+                    <option>Select</option>
+                    <option value="All">All</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Elevenses">Elevenses</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Snack">Snack</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Midnight Snack">Midnight Snack</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div>
+        <a th:href="@{'/caloriecounter/index?page=0&amp;limit=15&amp;startdate=1900-01-01&amp;enddate=2100-01-01&amp;type=All'}">Reset</a>
     </div>
 </div>
 </body>

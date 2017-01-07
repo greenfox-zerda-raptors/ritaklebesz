@@ -23,8 +23,11 @@ public class CounterController {
     @RequestMapping(value = {"/index", "/", ""})
     public String index(Model model,
                         @RequestParam(name = "page", defaultValue = "0") Integer page,
-                        @RequestParam(name = "limit", defaultValue = "15") Integer limit) {
-        model.addAttribute("meals", mealService.getAllMeals(page, limit));
+                        @RequestParam(name = "limit", defaultValue = "15") Integer limit,
+                        @RequestParam(name = "startdate", defaultValue = "1900-01-01") String startdate,
+                        @RequestParam(name = "enddate", defaultValue = "2100-01-01") String enddate,
+                        @RequestParam(name = "type", defaultValue = "All") String type) {
+        model.addAttribute("meals", mealService.getRequestedMeals(type, startdate, enddate, page, limit));
         model.addAttribute("mealCount", mealService.getMealCount());
         model.addAttribute("calories", mealService.getSumOfAllCalories());
         return "index";
