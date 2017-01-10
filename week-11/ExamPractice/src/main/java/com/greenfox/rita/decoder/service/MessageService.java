@@ -35,7 +35,7 @@ public class MessageService {
     private String decode(int len, String text, int shift, String s) {
         for (int x = 0; x < len; x++) {
             char c = (char) (text.charAt(x) - shift);
-            if (c == ' ') {
+            if (text.charAt(x) == ' ') {
                 s += " ";
             } else if (c < 'a') {
                 s += (char) (text.charAt(x) + (26 - shift));
