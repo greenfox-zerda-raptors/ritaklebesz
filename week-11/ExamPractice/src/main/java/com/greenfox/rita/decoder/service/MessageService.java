@@ -63,4 +63,8 @@ public class MessageService {
     public void saveNewMessage(Message msg) {
         repository.save(msg);
     }
+
+    public Message getMessage(long id) {
+        return repository.findOne(id);
+    }
 }

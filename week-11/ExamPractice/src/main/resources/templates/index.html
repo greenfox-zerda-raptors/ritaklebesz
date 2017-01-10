@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Caesar Cipher</title>
+</head>
+<body>
+<form th:action="@{/caesarcipher/}" method="post" th:object="${message}">
+    <label>Text:</label>
+    <input type="text" th:field="${message.text}"/>
+    <p>Enter a number between -25 and 25</p>
+    <label>Shift:</label>
+    <input type="number" min="-25" max="25" th:field="${message.shift}"/>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

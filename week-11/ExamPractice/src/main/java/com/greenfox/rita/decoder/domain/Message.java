@@ -22,5 +22,6 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private int shift;
+    @Column(length = 5000)
     private String text;
 }
