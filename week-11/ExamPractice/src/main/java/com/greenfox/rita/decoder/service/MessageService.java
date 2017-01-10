@@ -24,15 +24,6 @@ public class MessageService {
         String text = msg.getText().toLowerCase();
         int shift = msg.getShift();
         int len = msg.getText().length();
-        if (shift >= 0) {
-            return decode(len, text, shift, s);
-        } else {
-            return encode(len, text, shift, s);
-        }
-
-    }
-
-    private String decode(int len, String text, int shift, String s) {
         for (int x = 0; x < len; x++) {
             char c = (char) (text.charAt(x) - shift);
             if (text.charAt(x) == ' ') {
@@ -44,20 +35,7 @@ public class MessageService {
             }
         }
         return s;
-    }
 
-    private String encode(int len, String text, int shift, String s) {
-        for (int x = 0; x < len; x++) {
-            char c = (char) (text.charAt(x) + shift);
-            if (c == ' ') {
-                s += " ";
-            } else if (c < 'a') {
-                s += (char) (text.charAt(x) + (26 + shift));
-            } else {
-                s += c;
-            }
-        }
-        return s;
     }
 
     public void saveNewMessage(Message msg) {
